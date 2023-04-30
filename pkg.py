@@ -1,6 +1,7 @@
 import click
 from pkg.graph import Graph
 from pkg.visual import generate_html
+from pkg.protocols import apply_protocol
 from bson import ObjectId
 from rich.console import Console
 from rich.table import Table
@@ -19,8 +20,7 @@ def fetch(id):
     graph = Graph()
     object_id = ObjectId(id)
     node = graph.find_one(_id=object_id)
-    protocol = node['protocol']
-    print(protocol)
+    apply_protocol(node)
 
 
 @cli.command()
