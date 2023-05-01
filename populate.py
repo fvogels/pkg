@@ -52,10 +52,9 @@ def add_url(*, name, url, **kwargs):
     )
 
 
-def add_pdf(*, name, authors, filename, **kwargs):
+def add_pdf(*, name, filename, **kwargs):
     return add_node(
         name=name,
-        authors=authors,
         protocol='pdf',
         filename=filename,
         **kwargs,
@@ -69,12 +68,22 @@ def link(from_node, to_node):
 
 
 math = add_node(name='Mathematics')
+algebra = add_node(name='Algebra').link(math)
+linear_algebra = add_node(name='Linear Algebra').link(algebra)
+science = add_node(name='Science')
+physics = add_node(name='Physics').link(science)
 software_development = add_node(name='Software Development')
+gamedev = add_node(name='Game Development')
+mobiledev = add_node(name='Mobile Development')
+quantum = add_node(name='Quantum')
+networks = add_node(name='Networks')
 programming_language = add_node(name='Programming Language').link(software_development)
 proof_assistant = add_node(name='Proof Assistant').link(math)
 functional_programming = add_node(name='Functional Programming').link(programming_language)
 object_oriented_programming = add_node(name='Object Oriented Programming').link(programming_language)
 concurrent_programming = add_node(name='Concurrent Programming').link(programming_language)
+distributed_computing = add_node(name='Distributed Computing')
+cloud = add_node(name='Cloud Development')
 logic_programming = add_node(name='Logic Programming').link(programming_language)
 type_system = add_node(name='Type System').link(programming_language)
 dynamically_typed = add_node(name='Dynamic Typing').link(type_system)
@@ -90,11 +99,13 @@ linux = add_node(name='Linux')
 unix = add_node(name='Unix')
 flask = add_node(name='Flask')
 ai = add_node(name='Artificial Intelligence')
-machine_learning = add_node(name='Machine Learning')
+nlp = add_node(name='Natural Language Processing').link(ai)
+iot = add_node(name='Internet of Things')
+machine_learning = add_node(name='Machine Learning').link(ai)
 computer_architecture = add_node(name='Computer Architecture')
 security = add_node(name='Security')
 database = add_node(name='Database')
-data = add_node(name='Data')
+data = add_node(name='Data Science')
 graphics = add_node(name='Graphics')
 raytracing = add_node(name='Ray Tracing').link(graphics)
 parallelism = add_node(name='Parallelism').link(graphics)
@@ -102,14 +113,18 @@ economics = add_node(name='Economics')
 politics = add_node(name='Politics')
 shell_scripting = add_node(name='Shell Scripting')
 rest = add_node(name='REST')
-unit_testing = add_node(name='Unit Testing')
-tdd = add_node(name='Test Driven Development')
-bdd = add_node(name='Behavior Driven Development')
-azure = add_node(name='Azure')
+testing = add_node(name='Testing')
+unit_testing = add_node(name='Unit Testing').link(testing)
+tdd = add_node(name='Test Driven Development').link(testing)
+bdd = add_node(name='Behavior Driven Development').link(testing)
+azure = add_node(name='Azure').link(cloud)
 devops = add_node(name='DevOps')
-microservice = add_node(name='Microservice')
+ssh = add_node(name='SSH')
+microservice = add_node(name='Microservice').link(distributed_computing)
+excel = add_node(name='Excel')
 
 library = add_node(name='Library')
+framework = add_node(name='Framework')
 book = add_node(name='Book')
 free = add_node(name='Free')
 reference = add_node(name='Reference')
@@ -183,11 +198,11 @@ kotlin = add_url(
 erlang = add_url(
     name='Erlang',
     url='https://www.erlang.org/',
-).link(programming_language, dynamically_typed, functional_programming, concurrent_programming)
+).link(programming_language, dynamically_typed, functional_programming, concurrent_programming, distributed_computing)
 elixir = add_node(
     name='Elixir',
     url='https://elixir-lang.org/',
-).link(programming_language, dynamically_typed, functional_programming, concurrent_programming)
+).link(programming_language, dynamically_typed, functional_programming, concurrent_programming, distributed_computing)
 assembly = add_node(name='Assembly').link(programming_language)
 fsharp = add_url(
     name='F#',
@@ -216,6 +231,12 @@ raku = add_url(
 css = add_node(name='CSS').link(frontend, webdev)
 html = add_node(name='HTML').link(frontend, webdev)
 sql = add_node(name='SQL').link(database)
+nosql = add_node(name='NoSQL').link(database)
+
+scipy = add_url(
+    name='SciPy',
+    url='https://scipy.org/',
+).link(library, python, science)
 
 jquery = add_url(
     name='jQuery',
@@ -241,6 +262,71 @@ react = add_url(
     name='React',
     url='https://reactjs.org/',
 ).link(frontend, library, javascript, typescript, webdev)
+
+flask = add_url(
+    name='Flask',
+    url='https://flask.palletsprojects.com/',
+).link(backend, framework, webdev, python)
+
+django = add_url(
+    name='Django',
+    url='https://www.djangoproject.com/',
+).link(backend, framework, webdev, python)
+
+scikit = add_url(
+    name='SciKit',
+    url='https://scikit-learn.org/stable/',
+).link(python, library, science)
+
+asterisk = add_url(
+    name='Asterisk',
+    url='https://www.asterisk.org/',
+)
+
+cassandra = add_url(
+    name='Cassandra',
+    url='https://cassandra.apache.org/',
+).link(database, nosql)
+
+cloud_foundry = add_url(
+    name='Cloud Foundry',
+    url='https://www.cloudfoundry.org/',
+).link(cloud)
+
+elastic_search = add_url(
+    name='Elastic Search',
+    url='https://www.elastic.co/',
+).link(data)
+
+bigquery = add_url(
+    name='BigQuery',
+    url='https://cloud.google.com/bigquery',
+).link(data)
+
+hadoop = add_url(
+    name='Hadoop',
+    url='https://hadoop.apache.org/',
+).link(distributed_computing)
+
+kafka = add_url(
+    name='Kafka',
+    url='https://kafka.apache.org/intro',
+).link(distributed_computing)
+
+maven = add_url(
+    name='Maven',
+    url='https://maven.apache.org/',
+)
+
+mongodb = add_url(
+    name='MongoDB',
+    url='https://www.mongodb.com/',
+).link(database, nosql)
+
+spark = add_url(
+    name='Spark',
+    url='https://spark.apache.org/',
+).link(data)
 
 github = add_url(
     name='GitHub',
@@ -305,7 +391,6 @@ add_pdf(
 
 add_pdf(
     name='Beamer User Guide',
-    authors=[],
     filename='angular-up-and-running.zpaq',
 ).link(latex, book, reference)
 
@@ -317,7 +402,6 @@ add_pdf(
 
 add_pdf(
     name='TikZ & PGF',
-    authors=[],
     filename='tikz-pgf.zpaq',
 ).link(latex, book, reference)
 
@@ -355,7 +439,7 @@ add_pdf(
     name='Flask Web Development',
     authors=['Miguel Grinberg'],
     filename='flask-web-development.zpaq',
-).link(python, flask, webdev, frontend)
+).link(python, flask, book)
 
 add_pdf(
     name='Homotopy Type Theory',
@@ -930,7 +1014,7 @@ add_pdf(
     name='Beginning Azure IoT Edge Computing',
     authors=['David Jensen'],
     filename='beginning-azure-iot-edge-computing.zpaq'
-).link(azure, book)
+).link(azure, book, iot)
 
 add_pdf(
     name='Building Microservices Applications on Microsoft Azure',
@@ -1038,7 +1122,7 @@ add_pdf(
     name='Practical Azure Functions: A Guide to Web, Mobile, and IoT Applications',
     authors=['Agus Kurniawan Wely Lau'],
     filename='practical-azure-functions.zpaq'
-).link(azure, book)
+).link(azure, book, iot, mobiledev)
 
 add_pdf(
     name='Practical Azure SQL Database for Modern Developers',
@@ -1075,3 +1159,558 @@ add_pdf(
     authors=['Rob Reagan'],
     filename='web-applications-on-azure.zpaq'
 ).link(azure, book, webdev)
+
+add_pdf(
+    name='Applied Computational Thinking With Python',
+    filename='applied-computational-thinking-with-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Applying Math With Python',
+  filename='applying-math-with-python.zpaq',
+).link(python, book, math)
+
+add_pdf(
+  name='Artificial Intelligence With Python',
+  filename='artificial-intelligence-with-python.zpaq',
+).link(python, book, ai)
+
+add_pdf(
+  name='Automate The Boring Stuff With Python',
+  filename='automate-the-boring-stuff-with-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Beyond The Basic Stuff With Python',
+  filename='beyond-the-basic-stuff-with-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Black Hat Python',
+  filename='black-hat-python.zpaq',
+).link(python, book, security)
+
+add_pdf(
+  name='Cracking Codes With Python',
+  filename='cracking-codes-with-python.zpaq',
+).link(python, book, security)
+
+add_pdf(
+  name='Data Engineering With Python',
+  filename='data-engineering-with-python.zpaq',
+).link(python, book, data)
+
+add_pdf(
+  name='Deep Reinforcement Learning With Python',
+  filename='deep-reinforcement-learning-with-python.zpaq',
+).link(python, book, ai)
+
+add_pdf(
+  name='Django3 By Example',
+  filename='django3-by-example.zpaq',
+).link(python, book, django)
+
+add_pdf(
+  name='Doing Math With Python',
+  filename='doing-math-with-python.zpaq',
+).link(python, book, math)
+
+add_pdf(
+  name='Elegant SciPy',
+  filename='elegant-scipy.zpaq',
+).link(python, book, scipy)
+
+add_pdf(
+  name='Fluent Python',
+  filename='fluent-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Gray Hat Python',
+  filename='gray-hat-python.zpaq',
+).link(python, book, security)
+
+add_pdf(
+  name='Hands On Exploratory Data Analysis With Python',
+  filename='hands-on-exploratory-data-analysis-with-python.zpaq',
+).link(python, book, data)
+
+add_pdf(
+  name='Hands On Genetic Algorithms With Python',
+  filename='hands-on-genetic-algorithms-with-python.zpaq',
+).link(python, book, ai)
+
+add_pdf(
+  name='Hands On Machine Learning With Scikit',
+  filename='hands-on-machine-learning-with-scikit.zpaq',
+).link(python, book, machine_learning, scikit)
+
+add_pdf(
+  name='Hands On Natural Language Processing With Python',
+  filename='hands-on-natural-language-processing-with-python.zpaq',
+).link(python, book, nlp)
+
+add_pdf(
+  name='Hands On Simulation Modeling With Python',
+  filename='hands-on-simulation-modeling-with-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Impractical Python Projects',
+  filename='impractical-python-projects.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Introducing Python',
+  filename='introducing-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Invent Your Own Computer Games With Python',
+  filename='invent-your-own-computer-games-with-python.zpaq',
+).link(python, book, gamedev)
+
+add_pdf(
+  name='Learn Quantum Computing With Python And IBM Quantum Experience',
+  filename='learn-quantum-computing-with-python-and-ibm-quantum-experience.zpaq',
+).link(python, book, quantum)
+
+add_pdf(
+  name='Learn To Program With Minecraft',
+  filename='learn-to-program-with-minecraft.zpaq',
+).link(python, book, gamedev)
+
+add_pdf(
+  name='Mastering Python Networking',
+  filename='mastering-python-networking.zpaq',
+).link(python, book, networks)
+
+add_pdf(
+  name='Math Adventures With Python',
+  filename='math-adventures-with-python.zpaq',
+).link(python, book, math)
+
+add_pdf(
+  name='Mission Python',
+  filename='mission-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Modern Python Cookbook',
+  filename='modern-python-cookbook.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Natural Language Processing With Python And Spacy',
+  filename='natural-language-processing-with-python-and-spacy.zpaq',
+).link(python, book, nlp)
+
+add_pdf(
+  name='Natural Language Processing With Python',
+  filename='natural-language-processing-with-python.zpaq',
+).link(python, book, nlp)
+
+add_pdf(
+  name='Practical Python Programming For IoT',
+  filename='practical-python-programming-for-iot.zpaq',
+).link(python, book, iot)
+
+add_pdf(
+  name='Python Algorithmic Trading Cookbook',
+  filename='python-algorithmic-trading-cookbook.zpaq',
+).link(python, book, economics)
+
+add_pdf(
+  name='Python Automation Cookbook',
+  filename='python-automation-cookbook.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python Crash Course',
+  filename='python-crash-course.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python Data Cleaning Cookbook',
+  filename='python-data-cleaning-cookbook.zpaq',
+).link(python, book, data)
+
+add_pdf(
+  name='Python Data Science Handbook',
+  filename='python-data-science-handbook.zpaq',
+).link(python, book, data)
+
+add_pdf(
+  name='Python Feature Engineering Cookbook',
+  filename='python-feature-engineering-cookbook.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python Flashcards',
+  filename='python-flashcards.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python For Finance Cookbook',
+  filename='python-for-finance-cookbook.zpaq',
+).link(python, book, economics)
+
+add_pdf(
+  name='Python For Kids',
+  filename='python-for-kids.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python Image Processing Cookbook',
+  filename='python-image-processing-cookbook.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python One Liners',
+  filename='python-one-liners.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python Playground Geeky Projects For The Curious Programmer',
+  filename='python-playground-geeky-projects-for-the-curious-programmer.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Python Workshop',
+  filename='python-workshop.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Real World Python',
+  filename='real-world-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Serious Python',
+  filename='serious-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Statistics And Calculus With Python Workshop',
+  filename='statistics-and-calculus-with-python-workshop.zpaq',
+).link(python, book, math)
+
+add_pdf(
+  name='Teach Your Kids To Code',
+  filename='teach-your-kids-to-code.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Test Driven Development With Python',
+  filename='test-driven-development-with-python.zpaq',
+).link(python, book, tdd)
+
+add_pdf(
+  name='The Hitchhikers Guide To Python',
+  filename='the-hitchhikers-guide-to-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Think Bayes',
+  filename='think-bayes.zpaq',
+).link(python, book, math)
+
+add_pdf(
+  name='Think Python',
+  filename='think-python.zpaq',
+).link(python, book)
+
+add_pdf(
+  name='Thoughtful Machine Learning With Python',
+  filename='thoughtful-machine-learning-with-python.zpaq',
+).link(python, book, machine_learning)
+
+add_pdf(
+  name='Twisted Network Programming Essentials',
+  filename='twisted-network-programming-essentials.zpaq',
+).link(python, book, networks)
+
+add_pdf(
+  name='Web Development With Django Cookbook',
+  filename='web-development-with-django-cookbook.zpaq',
+).link(python, book, django)
+
+add_pdf(
+  name='Web Scraping With Python',
+  filename='web-scraping-with-python.zpaq',
+).link(python, book, webdev)
+
+add_pdf(
+  name='20 Essential Games To Study',
+  filename='20-essential-games-to-study.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Basics Of Game Design',
+  filename='basics-of-game-design.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Buttonless Incredible Iphone And Ipad Games And The Stories Behind Them',
+  filename='buttonless-incredible-iphone-and-ipad-games-and-the-stories-behind-them.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Comedy For Animators',
+  filename='comedy-for-animators.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Digital Mayhem 3D Landscape Techniques',
+  filename='digital-mayhem-3d-landscape-techniques.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name="Directing For Animation Everything You Didn't Learn In Art School",
+  filename='directing-for-animation-everything-you-didnt-learn-in-art-school.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Game Design Theory',
+  filename='game-design-theory.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name="Game Magic A Designer's Guide To Magic Systems In Theory And Practice", #
+  filename='game-magic-adesigners-guide-to-magic-systems-in-theory-and-practice.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Honoring The Code',
+  filename='honoring-the-code.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Independent Animation: Developing Producing And Distributing Your Animated Films',
+  filename='independent-animation-developing-producing-and-distributing-your-animated-films.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Learn To Play Designing Tutorials For Video Games',
+  filename='learn-to-play-designing-tutorials-for-video-games.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='On The Way To Fun An Emotion Based Approach To Successful Game Design', #
+  filename='on-the-way-to-fun-anemotion-based-approach-to-successful-game-design.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Punk Playthings: Provocations For 21st Century Game Makers',
+  filename='punk-playthings-provocations-for-21st-century-game-makers.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Reverse Design Diablo Ii',
+  filename='reverse-design-diablo-ii.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name='Story Telling For Interactive Digital Media And Video Games',
+  filename='story-telling-for-interactive-digital-media-and-video-games.pdf',
+).link(book, gamedev)
+
+add_pdf(
+  name="The Animator's Eye: Adding Life To Animation With Timing, Layout, Design, Color And Sound",
+  filename='the-animators-eye-adding-life-to-animation-with-timing-layout-design-color-and-sound.pdf',
+).link(book, gamedev)
+
+add_pdf(
+    name='Asterisk: The Definitive Guide',
+    filename="asterisk-the-definitive-guide.zpaq",
+).link(software_development, book, asterisk)
+
+add_pdf(
+    name='Cassandra: The Definitive Guide',
+    filename="cassandra-the-definitive-guide.zpaq",
+).link(software_development, book)
+
+add_pdf(
+    name='Cloud Foundry: The Definitive Guide',
+    filename="cloud-foundry-the-definitive-guide.zpaq",
+).link(software_development, book)
+
+add_pdf(
+    name='Elastic Search: The Definitive Guide',
+    filename="elastic-search-the-definitive-guide.zpaq",
+).link(software_development, book, elastic_search)
+
+add_pdf(
+    name='Ethernet: The Definitive Guide',
+    filename="ethernet-the-definitive-guide.zpaq",
+).link(software_development, book, networks)
+
+add_pdf(
+    name='Google BigQuery: The Definitive Guide',
+    filename="google-big-query-the-definitive-guide.zpaq",
+).link(software_development, book, bigquery)
+
+add_pdf(
+    name='Hadoop: The Definitive Guide',
+    filename="hadoop-the-definitive-guide.zpaq",
+).link(software_development, book, hadoop)
+
+add_pdf(
+    name='Java Performance: The Definitive Guide',
+    filename="java-performance-the-definitive-guide.zpaq",
+).link(software_development, book, java)
+
+add_pdf(
+    name='JavaScript: The Definitive Guide',
+    filename="javascript-the-definitive-guide.zpaq",
+).link(software_development, book, javascript)
+
+add_pdf(
+    name='Kafka: The Definitive Guide',
+    filename="kafka-the-definitive-guide.zpaq",
+).link(software_development, book, kafka)
+
+add_pdf(
+    name='Maven: The Definitive Guide',
+    filename="maven-the-definitive-guide.zpaq",
+).link(software_development, book)
+
+add_pdf(
+    name='MongoDB: The Definitive Guide',
+    filename="mongodb-the-definitive-guide.zpaq",
+).link(software_development, book, mongodb)
+
+add_pdf(
+    name='Spark: The Definitive Guide',
+    filename="spark-the-definitive-guide.zpaq",
+).link(software_development, book, spark)
+
+add_pdf(
+    name='SSH The Secure Shell: The Definitive Guide',
+    filename="ssh-the-secure-shell-the-definitive-guide.zpaq",
+).link(software_development, book, ssh)
+
+add_pdf(
+  name="Algebra Essentials",
+  filename='algebra-essentials.zpaq',
+).link(book, algebra)
+
+add_pdf(
+  name="Applied Linear Algebra And Optimization Using Matlab",
+  filename='applied-linear-algebra-and-optimization-using-matlab.zpaq',
+).link(book, linear_algebra)
+
+add_pdf(
+  name="Cluster Analysis And Data Mining",
+  filename='cluster-analysis-and-data-mining.zpaq',
+).link(book, math, data)
+
+add_pdf(
+  name="Commutative Algebra",
+  filename='commutative-algebra.zpaq',
+).link(book, math, algebra)
+
+add_pdf(
+  name="Cosmol Heat Transfer Models",
+  filename='cosmol-heat-transfer-models.zpaq',
+).link(book, math, physics)
+
+add_pdf(
+  name="Dimensional Analysis For Unit Conversion Using Matlab",
+  filename='dimensional-analysis-for-unit-conversion-using-matlab.zpaq',
+).link(book, math, physics)
+
+add_pdf(
+  name="Direct Energy Conversion Technologies",
+  filename='direct-energy-conversion-technologies.zpaq',
+).link(book, math, physics)
+
+add_pdf(
+  name="Essentials Of Modern Algebra",
+  filename='essentials-of-modern-algebra.zpaq',
+).link(book, math, algebra)
+
+add_pdf(
+  name="Finite Element Analysis",
+  filename='finite-element-analysis.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Flight Science",
+  filename='flight-science.zpaq',
+).link(book, math, science)
+
+add_pdf(
+  name="Foundations Of Math",
+  filename='foundations-of-math.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Foundations Of Physics",
+  filename='foundations-of-physics.zpaq',
+).link(book, math, physics)
+
+add_pdf(
+  name="Geometry Creation And Import",
+  filename='geometry-creation-and-import.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Linear Algebra",
+  filename='linear-algebra.zpaq',
+).link(book, linear_algebra)
+
+add_pdf(
+  name="Mathematical Methods For Physics",
+  filename='mathematical-methods-for-physics.zpaq',
+).link(book, math, physics)
+
+add_pdf(
+  name="Mathematical Physics",
+  filename='mathematical-physics.zpaq',
+).link(book, math, physics)
+
+add_pdf(
+  name="Mathematics For Computer Graphics And Game Programming",
+  filename='mathematics-for-computer-graphics-and-game-programming.zpaq',
+).link(book, math, graphics, gamedev)
+
+add_pdf(
+  name="Microsoft Excel Functions And Formulas With Excel2019 And Office365",
+  filename='microsoft-excel-functions-and-formulas-with-excel2019-and-office365.zpaq',
+).link(book, math, excel)
+
+add_pdf(
+  name="Multivariable And Vector Calculus",
+  filename='multivariable-and-vector-calculus.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Numerical Methods In Engineering And Science",
+  filename='numerical-methods-in-engineering-and-science.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Optimization Using Linear Programming",
+  filename='optimization-using-linear-programming.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Research Methods For Information Systems",
+  filename='research-methods-for-information-systems.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Rf Module",
+  filename='rf-module.zpaq',
+).link(book, math)
+
+add_pdf(
+  name="Special Theory Of Relativity",
+  filename='special-theory-of-relativity.zpaq',
+).link(book, math, physics)
+
+add_pdf(
+  name="Structural Steel Design",
+  filename='structural-steel-design.zpaq',
+).link(book, math)
