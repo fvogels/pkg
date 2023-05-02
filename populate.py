@@ -10,7 +10,6 @@ db = client.pkg
 graph = db.graph
 
 
-
 class NodeId:
     def __init__(self, id):
         self.__id = id
@@ -23,7 +22,6 @@ class NodeId:
         for node in nodes:
             link(node.id, self.id)
         return self
-
 
 
 def find_node_with_name(name):
@@ -70,6 +68,7 @@ def link(from_node, to_node):
 math = add_node(name='Mathematics')
 algebra = add_node(name='Algebra').link(math)
 linear_algebra = add_node(name='Linear Algebra').link(algebra)
+topology = add_node(name='Topology').link(math)
 science = add_node(name='Science')
 physics = add_node(name='Physics').link(science)
 software_development = add_node(name='Software Development')
@@ -79,25 +78,24 @@ quantum = add_node(name='Quantum')
 networks = add_node(name='Networks')
 programming_language = add_node(name='Programming Language').link(software_development)
 proof_assistant = add_node(name='Proof Assistant').link(math)
-functional_programming = add_node(name='Functional Programming').link(programming_language)
-object_oriented_programming = add_node(name='Object Oriented Programming').link(programming_language)
-concurrent_programming = add_node(name='Concurrent Programming').link(programming_language)
+functional_programming = add_node(name='Functional Programming')
+object_oriented_programming = add_node(name='Object Oriented Programming')
+concurrent_programming = add_node(name='Concurrent Programming')
 distributed_computing = add_node(name='Distributed Computing')
 cloud = add_node(name='Cloud Development')
-logic_programming = add_node(name='Logic Programming').link(programming_language)
+logic_programming = add_node(name='Logic Programming')
 type_system = add_node(name='Type System').link(programming_language)
 dynamically_typed = add_node(name='Dynamic Typing').link(type_system)
 statically_typed = add_node(name='Static Typing').link(type_system)
 dependent_typing = add_node(name='Dependent Typing').link(type_system)
 computer_science = add_node(name='Computer Science')
 webdev = add_node(name='Web Development').link(software_development)
-frontend = add_node(name='Front End').link(webdev)
-backend = add_node(name='Back End').link(webdev)
+frontend = add_node(name='Front End')
+backend = add_node(name='Back End')
 latex = add_node(name='LaTeX')
 git = add_node(name='Git')
 linux = add_node(name='Linux')
 unix = add_node(name='Unix')
-flask = add_node(name='Flask')
 ai = add_node(name='Artificial Intelligence')
 nlp = add_node(name='Natural Language Processing').link(ai)
 iot = add_node(name='Internet of Things')
@@ -123,6 +121,9 @@ ssh = add_node(name='SSH')
 microservice = add_node(name='Microservice').link(distributed_computing)
 excel = add_node(name='Excel')
 
+software = add_node(name='Software')
+editor = add_node(name='Editor')
+ide = add_node(name='IDE')
 library = add_node(name='Library')
 framework = add_node(name='Framework')
 book = add_node(name='Book')
@@ -131,6 +132,7 @@ reference = add_node(name='Reference')
 monad = add_node(name='Monad')
 video = add_node(name='Video')
 tutorial = add_node(name='Tutorial')
+virtualization = add_node(name='Virtualization')
 movie = add_node(name='Movie')
 
 haskell = add_url(
@@ -263,6 +265,36 @@ react = add_url(
     url='https://reactjs.org/',
 ).link(frontend, library, javascript, typescript, webdev)
 
+react_native = add_url(
+    name='React Native',
+    url='https://reactnative.dev/',
+).link(frontend, library, javascript, typescript, mobiledev)
+
+android = add_url(
+    name='Android',
+    url='https://www.android.com/',
+).link(mobiledev)
+
+ios = add_url(
+    name='iOS',
+    url='https://www.apple.com/ios//',
+).link(mobiledev)
+
+flutter = add_url(
+    name='Flutter',
+    url='https://flutter.dev/',
+).link(dart, framework)
+
+xamarin = add_url(
+    name='Xamarin',
+    url='https://dotnet.microsoft.com/en-us/apps/xamarin',
+).link()
+
+ionic = add_url(
+    name='Ionic',
+    url='https://ionicframework.com/',
+).link()
+
 flask = add_url(
     name='Flask',
     url='https://flask.palletsprojects.com/',
@@ -271,7 +303,7 @@ flask = add_url(
 django = add_url(
     name='Django',
     url='https://www.djangoproject.com/',
-).link(backend, framework, webdev, python)
+).link(framework, webdev, python)
 
 scikit = add_url(
     name='SciKit',
@@ -286,7 +318,7 @@ asterisk = add_url(
 cassandra = add_url(
     name='Cassandra',
     url='https://cassandra.apache.org/',
-).link(database, nosql)
+).link(nosql)
 
 cloud_foundry = add_url(
     name='Cloud Foundry',
@@ -321,7 +353,7 @@ maven = add_url(
 mongodb = add_url(
     name='MongoDB',
     url='https://www.mongodb.com/',
-).link(database, nosql)
+).link(nosql)
 
 spark = add_url(
     name='Spark',
@@ -387,7 +419,7 @@ add_pdf(
     name='Angular Up & Running',
     authors=['Shyam Seshadri'],
     filename='angular-up-and-running.zpaq',
-).link(angular, webdev, frontend, book)
+).link(angular, book)
 
 add_pdf(
     name='Beamer User Guide',
@@ -427,7 +459,7 @@ add_pdf(
     name='GitHub Essentials',
     authors=['Achilleas Pipinellis'],
     filename='github-essentials.zpaq',
-).link(git, github, book)
+).link(github, book)
 
 add_pdf(
     name='Linux Bible',
@@ -439,7 +471,7 @@ add_pdf(
     name='Flask Web Development',
     authors=['Miguel Grinberg'],
     filename='flask-web-development.zpaq',
-).link(python, flask, book)
+).link(flask, book)
 
 add_pdf(
     name='Homotopy Type Theory',
@@ -466,19 +498,19 @@ add_pdf(
 ).link(linux, software_development, c, book)
 
 add_pdf(
-    name='Buliding Tools with GitHub',
+    name='Building Tools with GitHub',
     authors=['Chris Dawson'],
     filename='building-tools-with-github.zpaq',
-).link(git, github, book)
+).link(github, book)
 
 add_pdf(
-    name='Machine Learning',
+    name='Machine Learning (book)',
     authors=['Tom M. Mitchell'],
     filename='machine-learning.zpaq',
 ).link(machine_learning, book)
 
 add_pdf(
-    name='Computer Architecture',
+    name='Computer Architecture (book)',
     authors=['John L. Hennessy', 'David A. Patterson'],
     filename='computer-architecture.zpaq',
 ).link(computer_architecture, book)
@@ -592,7 +624,7 @@ add_pdf(
 ).link(linux, book)
 
 add_pdf(
-    name='Shell Scripting',
+    name='Shell Scripting (book)',
     authors=['Steve Parker'],
     filename='shell-scripting.zpaq',
 ).link(linux, shell_scripting, book)
@@ -619,7 +651,7 @@ add_pdf(
     name='Learning PHP, MySQL & JavaScript',
     authors=['Robin Nixon'],
     filename='learning-php-mysql-and-javascript.zpaq',
-).link(php, mysql, javascript, css, html, jquery, book)
+).link(php, mysql, css, html, jquery, book)
 
 add_pdf(
     name='Patterns of Enterprise Application Architecture',
@@ -762,13 +794,13 @@ add_url(
     name='Styled Components',
     url='https://www.styled-components.com/',
     description='Library for styling React components'
-).link(javascript, typescript, webdev, react, library)
+).link(react)
 
 add_url(
     name='Material UI',
     url='https://material-ui.com/',
     description='Library of React components'
-).link(javascript, typescript, webdev, react, library)
+).link(react)
 
 add_pdf(
     name='Active Learning',
@@ -1206,9 +1238,9 @@ add_pdf(
 ).link(python, book, ai)
 
 add_pdf(
-  name='Django3 By Example',
+  name='Django 3 By Example',
   filename='django3-by-example.zpaq',
-).link(python, book, django)
+).link(book, django)
 
 add_pdf(
   name='Doing Math With Python',
@@ -1218,7 +1250,7 @@ add_pdf(
 add_pdf(
   name='Elegant SciPy',
   filename='elegant-scipy.zpaq',
-).link(python, book, scipy)
+).link(book, scipy)
 
 add_pdf(
   name='Fluent Python',
@@ -1243,7 +1275,7 @@ add_pdf(
 add_pdf(
   name='Hands On Machine Learning With Scikit',
   filename='hands-on-machine-learning-with-scikit.zpaq',
-).link(python, book, machine_learning, scikit)
+).link(book, machine_learning, scikit)
 
 add_pdf(
   name='Hands On Natural Language Processing With Python',
@@ -1433,7 +1465,7 @@ add_pdf(
 add_pdf(
   name='Web Development With Django Cookbook',
   filename='web-development-with-django-cookbook.zpaq',
-).link(python, book, django)
+).link(book, django)
 
 add_pdf(
   name='Web Scraping With Python',
@@ -1442,82 +1474,82 @@ add_pdf(
 
 add_pdf(
   name='20 Essential Games To Study',
-  filename='20-essential-games-to-study.pdf',
+  filename='20-essential-games-to-study.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Basics Of Game Design',
-  filename='basics-of-game-design.pdf',
+  filename='basics-of-game-design.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Buttonless Incredible Iphone And Ipad Games And The Stories Behind Them',
-  filename='buttonless-incredible-iphone-and-ipad-games-and-the-stories-behind-them.pdf',
+  filename='buttonless-incredible-iphone-and-ipad-games-and-the-stories-behind-them.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Comedy For Animators',
-  filename='comedy-for-animators.pdf',
+  filename='comedy-for-animators.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Digital Mayhem 3D Landscape Techniques',
-  filename='digital-mayhem-3d-landscape-techniques.pdf',
+  filename='digital-mayhem-3d-landscape-techniques.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name="Directing For Animation Everything You Didn't Learn In Art School",
-  filename='directing-for-animation-everything-you-didnt-learn-in-art-school.pdf',
+  filename='directing-for-animation-everything-you-didnt-learn-in-art-school.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Game Design Theory',
-  filename='game-design-theory.pdf',
+  filename='game-design-theory.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
-  name="Game Magic A Designer's Guide To Magic Systems In Theory And Practice", #
-  filename='game-magic-adesigners-guide-to-magic-systems-in-theory-and-practice.pdf',
+  name="Game Magic A Designer's Guide To Magic Systems In Theory And Practice",
+  filename='game-magic-adesigners-guide-to-magic-systems-in-theory-and-practice.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Honoring The Code',
-  filename='honoring-the-code.pdf',
+  filename='honoring-the-code.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Independent Animation: Developing Producing And Distributing Your Animated Films',
-  filename='independent-animation-developing-producing-and-distributing-your-animated-films.pdf',
+  filename='independent-animation-developing-producing-and-distributing-your-animated-films.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Learn To Play Designing Tutorials For Video Games',
-  filename='learn-to-play-designing-tutorials-for-video-games.pdf',
+  filename='learn-to-play-designing-tutorials-for-video-games.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
-  name='On The Way To Fun An Emotion Based Approach To Successful Game Design', #
-  filename='on-the-way-to-fun-anemotion-based-approach-to-successful-game-design.pdf',
+  name='On The Way To Fun An Emotion Based Approach To Successful Game Design',
+  filename='on-the-way-to-fun-anemotion-based-approach-to-successful-game-design.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Punk Playthings: Provocations For 21st Century Game Makers',
-  filename='punk-playthings-provocations-for-21st-century-game-makers.pdf',
+  filename='punk-playthings-provocations-for-21st-century-game-makers.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Reverse Design Diablo Ii',
-  filename='reverse-design-diablo-ii.pdf',
+  filename='reverse-design-diablo-ii.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name='Story Telling For Interactive Digital Media And Video Games',
-  filename='story-telling-for-interactive-digital-media-and-video-games.pdf',
+  filename='story-telling-for-interactive-digital-media-and-video-games.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
   name="The Animator's Eye: Adding Life To Animation With Timing, Layout, Design, Color And Sound",
-  filename='the-animators-eye-adding-life-to-animation-with-timing-layout-design-color-and-sound.pdf',
+  filename='the-animators-eye-adding-life-to-animation-with-timing-layout-design-color-and-sound.zpaq',
 ).link(book, gamedev)
 
 add_pdf(
@@ -1608,7 +1640,7 @@ add_pdf(
 add_pdf(
   name="Commutative Algebra",
   filename='commutative-algebra.zpaq',
-).link(book, math, algebra)
+).link(book, algebra)
 
 add_pdf(
   name="Cosmol Heat Transfer Models",
@@ -1628,7 +1660,7 @@ add_pdf(
 add_pdf(
   name="Essentials Of Modern Algebra",
   filename='essentials-of-modern-algebra.zpaq',
-).link(book, math, algebra)
+).link(book, algebra)
 
 add_pdf(
   name="Finite Element Analysis",
@@ -1656,7 +1688,7 @@ add_pdf(
 ).link(book, math)
 
 add_pdf(
-  name="Linear Algebra",
+  name="Linear Algebra (book)",
   filename='linear-algebra.zpaq',
 ).link(book, linear_algebra)
 
@@ -1701,7 +1733,7 @@ add_pdf(
 ).link(book, math)
 
 add_pdf(
-  name="Rf Module",
+  name="RF Module",
   filename='rf-module.zpaq',
 ).link(book, math)
 
@@ -1714,3 +1746,229 @@ add_pdf(
   name="Structural Steel Design",
   filename='structural-steel-design.zpaq',
 ).link(book, math)
+
+add_pdf(
+  name="Android 9 Development Cookbook",
+  filename='android-9-development-cookbook.zpaq',
+).link(book, android)
+
+add_pdf(
+  name="Android Programming For Beginners",
+  filename='android-programming-for-beginners.zpaq',
+).link(book, android, java)
+
+add_pdf(
+  name="Android Programming With Kotlin For Beginners",
+  filename='android-programming-with-kotlin-for-beginners.zpaq',
+).link(book, android, kotlin)
+
+add_pdf(
+  name="Flutter For Beginners",
+  filename='flutter-for-beginners.zpaq',
+).link(book, flutter)
+
+add_pdf(
+  name="Hands On Android UI Development",
+  filename='hands-on-android-ui-development.zpaq',
+).link(book, android)
+
+add_pdf(
+  name="Hands On Full Stack Development With Swift",
+  filename='hands-on-full-stack-development-with-swift.zpaq',
+).link(book, swift, frontend, backend)
+
+add_pdf(
+  name="Hands On Serverside Web Development With Swift",
+  filename='hands-on-serverside-web-development-with-swift.zpaq',
+).link(book, swift, backend)
+
+add_pdf(
+  name="Ionic Cookbook",
+  filename='ionic-cookbook.zpaq',
+).link(book, ionic)
+
+add_pdf(
+  name="iOS 13 Programming For Beginners",
+  filename='ios-13-programming-for-beginners.zpaq',
+).link(book, ios)
+
+add_pdf(
+  name="Learn Swift By Building Applications",
+  filename='learn-swift-by-building-applications.zpaq',
+).link(book, swift)
+
+add_pdf(
+  name="Mastering Swift 5",
+  filename='mastering-swift-5.zpaq',
+).link(book, swift)
+
+add_pdf(
+  name="Mastering Xamarin UI Development",
+  filename='mastering-xamarin-ui-development.zpaq',
+).link(book, xamarin)
+
+add_pdf(
+  name="React Native Blueprints",
+  filename='react-native-blueprints.zpaq',
+).link(book, react_native)
+
+add_pdf(
+  name="React Native Cookbook",
+  filename='react-native-cookbook.zpaq',
+).link(book, react_native)
+
+add_pdf(
+  name="Swift Protocol Oriented Programming",
+  filename='swift-protocol-oriented-programming.zpaq',
+).link(book, swift)
+
+add_pdf(
+  name="Test Driven iOS Development With Swift 4",
+  filename='test-driven-ios-development-with-swift-4.zpaq',
+).link(book, ios, swift, tdd)
+
+add_pdf(
+  name="Xamarin Forms Projects",
+  filename='xamarin-forms-projects.zpaq',
+).link(book, xamarin)
+
+add_url(
+    name='Visual Studio Code',
+    url='https://code.visualstudio.com/',
+).link(software, free, editor)
+
+add_url(
+    name='Visual Studio',
+    url='https://visualstudio.microsoft.com/',
+).link(software, free, ide)
+
+add_url(
+    name='Emacs',
+    url='https://www.gnu.org/software/emacs/',
+).link(software, free, editor)
+
+add_url(
+    name="Ralf Brown's Interrupt List",
+    url="http://www.ctyme.com/rbrown.htm",
+).link(reference, assembly)
+
+add_url(
+    name="32bit DOS Development with Open Watcom",
+    url="http://tuttlem.github.io/2015/10/04/32bit-dos-development-with-open-watcom.html",
+).link(cpp, software, free)
+
+add_url(
+    name="Allegro",
+    url="http://liballeg.org/"
+).link(cpp, gamedev, library, free)
+
+add_url(
+    name="The Last Thing D Needs",
+    url="https://www.youtube.com/watch?v=KAWA1DuvCnQ"
+).link(cpp, video)
+
+add_url(
+    name="Godbolt Compiler Explorer",
+    url="https://godbolt.org/",
+    description="Compiler Explorer: Website that allows to compile code using a large collection of C++ compilers"
+).link(cpp)
+
+add_url(
+    name="Unreal Engine",
+    url="https://www.unrealengine.com/"
+).link(cpp, framework, gamedev, free)
+
+docker = add_url(
+    name="Docker",
+    url="https://www.docker.com/",
+).link(virtualization, software, free)
+
+add_url(
+    name="Vagrant",
+    url="https://www.vagrantup.com/",
+).link(virtualization, software, free)
+
+add_url(
+    name="Dive Into Docker",
+    url="https://diveintodocker.com/",
+).link(docker, tutorial)
+
+add_url(
+    name="Docker Hub",
+    url="https://hub.docker.com/",
+).link(docker, tutorial)
+
+add_url(
+    name="NPM",
+    url="https://www.npmjs.com/",
+).link(javascript)
+
+add_url(
+    name="NodeJS",
+    url="https://nodejs.org/",
+).link(javascript, backend, software, free)
+
+add_url(
+    name="Impact Game Engine",
+    url="https://impactjs.com/",
+).link(javascript, gamedev, library)
+
+add_url(
+    name="PixiJS Game Engine",
+    url="http://www.pixijs.com/",
+).link(javascript, gamedev, library)
+
+add_url(
+    name="p5.js",
+    url="https://p5js.org/",
+).link(javascript, graphics, library)
+
+add_url(
+    name="Redux",
+    url="https://redux.js.org/",
+).link(javascript, library)
+
+add_url(
+    name="Webpack",
+    url="https://webpack.js.org/",
+).link(javascript)
+
+add_url(
+    name="Express",
+    url="https://expressjs.com/",
+).link(javascript, backend, library)
+
+sinatra = add_url(
+    name="Sinatra",
+    url="http://sinatrarb.com/",
+).link(ruby, backend, library, webdev)
+
+add_url(
+    name="Sinatra - The Book",
+    url="https://sinatra-org-book.herokuapp.com/",
+).link(sinatra)
+
+sinatra = add_url(
+    name="Ruby on Rails",
+    url="https://rubyonrails.org/",
+).link(ruby, backend, library, webdev)
+
+add_pdf(
+    name='Linear Algebra Done Right',
+    filename='linear-algebra-done-right.zpaq'
+).link(book, linear_algebra)
+
+add_pdf(
+    name='Abstract Algebra',
+    filename='abstract-algebra.zpaq'
+).link(book, algebra)
+
+add_pdf(
+    name='Topology (book)',
+    filename='topology.zpaq'
+).link(book, topology)
+
+add_pdf(
+    name='Theory of Numbers',
+    filename='theory-of-numbers.zpaq'
+).link(book, topology)
