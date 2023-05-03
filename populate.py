@@ -1,68 +1,18 @@
 from __future__ import annotations
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-from datetime import datetime
+from pkg.populator import GraphPopulator
+from oldnewthing import add_old_new_thing
 
 
-uri = "localhost:27017"
-client = MongoClient(uri, server_api=ServerApi('1'))
-db = client.pkg
-graph = db.graph
+graph_populator = GraphPopulator()
 
+def add_node(**kwargs):
+    return graph_populator.add_node(**kwargs)
 
-class NodeId:
-    def __init__(self, id):
-        self.__id = id
+def add_url(**kwargs):
+    return graph_populator.add_url(**kwargs)
 
-    @property
-    def id(self):
-        return self.__id
-
-    def link(self, *nodes: NodeId):
-        for node in nodes:
-            link(node.id, self.id)
-        return self
-
-
-def find_node_with_name(name):
-    return graph.find_one({'name': name})
-
-
-def add_node(*, name, **fields) -> NodeId:
-    if node := graph.find_one({'name': name}):
-        return NodeId(node['_id'])
-    else:
-        fields = {
-            'date': datetime.utcnow(),
-            'name': name,
-            'links': [],
-            **fields
-        }
-        return NodeId(graph.insert_one(fields).inserted_id)
-
-
-def add_url(*, name, url, **kwargs):
-    return add_node(
-        name=name,
-        url=url,
-        protocol='url',
-        **kwargs,
-    )
-
-
-def add_pdf(*, name, filename, **kwargs):
-    return add_node(
-        name=name,
-        protocol='pdf',
-        filename=filename,
-        **kwargs,
-    )
-
-
-def link(from_node, to_node):
-    filter = {'_id': from_node}
-    update = { '$addToSet': { 'links': to_node } }
-    graph.update_one(filter, update)
+def add_pdf(**kwargs):
+    return graph_populator.add_pdf(**kwargs)
 
 
 math = add_node(name='Mathematics')
@@ -82,6 +32,8 @@ functional_programming = add_node(name='Functional Programming')
 object_oriented_programming = add_node(name='Object Oriented Programming')
 concurrent_programming = add_node(name='Concurrent Programming')
 distributed_computing = add_node(name='Distributed Computing')
+domain_driven_design = add_node(name='Domain Driven Design')
+software_architecture = add_node(name='Software Architecture')
 cloud = add_node(name='Cloud Development')
 logic_programming = add_node(name='Logic Programming')
 type_system = add_node(name='Type System').link(programming_language)
@@ -120,6 +72,15 @@ devops = add_node(name='DevOps')
 ssh = add_node(name='SSH')
 microservice = add_node(name='Microservice').link(distributed_computing)
 excel = add_node(name='Excel')
+blazor = add_node(name='Blazor')
+ar = add_node(name='Augmented Reality')
+entity_framework = add_node(name='Entity Framework').link(dotnet)
+
+blog = add_node(name='blog')
+oldnewthing = add_url(
+    name='The Old New Thing',
+    url='https://devblogs.microsoft.com/oldnewthing/'
+).link(blog)
 
 software = add_node(name='Software')
 editor = add_node(name='Editor')
@@ -304,6 +265,26 @@ django = add_url(
     name='Django',
     url='https://www.djangoproject.com/',
 ).link(framework, webdev, python)
+
+dotnet = add_url(
+    name='.NET',
+    url='https://dotnet.microsoft.com/',
+).link(framework)
+
+aspnet = add_url(
+    name='ASP.NET',
+    url='https://dotnet.microsoft.com/en-us/apps/aspnet',
+).link(webdev, dotnet)
+
+grpc = add_url(
+    name='gRPC',
+    url='https://grpc.io/',
+)
+
+webforms = add_url(
+    name='Webforms',
+    url='https://learn.microsoft.com/en-us/aspnet/web-forms/',
+).link(aspnet)
 
 scikit = add_url(
     name='SciKit',
@@ -1832,7 +1813,7 @@ add_pdf(
   filename='xamarin-forms-projects.zpaq',
 ).link(book, xamarin)
 
-add_url(
+vscode = add_url(
     name='Visual Studio Code',
     url='https://code.visualstudio.com/',
 ).link(software, free, editor)
@@ -1972,3 +1953,206 @@ add_pdf(
     name='Theory of Numbers',
     filename='theory-of-numbers.zpaq'
 ).link(book, topology)
+
+add_pdf(
+    name='Tensor Calculus for Physics',
+    filename='tensor-calculus-for-physics.zpaq'
+).link(book, topology)
+
+add_pdf(
+  name="Advanced ASP.NET Core 3 Security",
+  filename='advanced-asp-net-core-3-security.pdf'
+).link(aspnet)
+
+add_pdf(
+  name="ASP.NET Core 3 And Angular 9",
+  filename='asp-net-core-3-and-angular-9d.pdf'
+).link(aspnet, angular)
+
+add_pdf(
+  name="ASP.NET Core 3 And React",
+  filename='asp-net-core-3-and-react.pdf'
+).link(aspnet, react)
+
+add_pdf(
+  name="ASP.NET Webforms Development",
+  filename='asp-net-webforms-development.pdf'
+).link(aspnet, webforms)
+
+add_pdf(
+  name="Beginning gRPC With ASP.NET Core 6",
+  filename='beginning-grpc-with-asp-net-core-6.pdf'
+).link(aspnet, grpc)
+
+add_pdf(
+  name="Building Single Page Applications In .NET Core",
+  filename='building-single-page-applications-in-net-core.pdf'
+).link(aspnet)
+
+add_pdf(
+  name="Complete ASP.NET Core Api Tutorial",
+  filename='complete-asp-net-core-api-tutorial.pdf'
+).link(aspnet)
+
+add_pdf(
+  name="C# 8 And .NET Core 3 Modern Cross Platform Development",
+  filename='csharp-8-and-net-core-3-modern-cross-platform-development.pdf'
+).link(csharp, dotnet)
+
+add_pdf(
+  name="C# 8 And .NET Core 3 Projects Using Azure",
+  filename='csharp-8-and-net-core-3-projects-using-azure.pdf'
+).link(csharp, dotnet, azure)
+
+add_pdf(
+  name="C# Programming For Absolute Beginners",
+  filename='csharp-programming-for-absolute-beginners.pdf'
+).link(csharp)
+
+add_pdf(
+  name="Essential Typescript 4",
+  filename='essential-typescript-4.pdf'
+).link(typescript)
+
+add_pdf(
+  name="Hands On Design Patterns With C# And .NET Core",
+  filename='hands-on-design-patterns-with-csharp-and-net-core.pdf'
+).link(csharp, dotnet)
+
+add_pdf(
+  name="Hands On Domain Driven Design With .NET Core",
+  filename='hands-on-domain-driven-design-with-net-core.pdf'
+).link(dotnet, domain_driven_design)
+
+add_pdf(
+  name="Hands On Github Actions",
+  filename='hands-on-github-actions.pdf'
+).link(github)
+
+add_pdf(
+  name="Hands On Mobile Development With .NET Core",
+  filename='hands-on-mobile-development-with-net-core.pdf'
+).link(dotnet, mobiledev)
+
+add_pdf(
+  name="Hands On Network Programming With C# And .NET Core",
+  filename='hands-on-network-programming-with-csharp-and-net-core.pdf'
+).link(csharp, dotnet, networks)
+
+add_pdf(
+  name="Hands On Object Oriented Programming With C#",
+  filename='hands-on-object-oriented-programming-with-csharp.pdf'
+).link(object_oriented_programming, csharp)
+
+add_pdf(
+  name="Hands On Parallel Programming With C# 8 And .NET Core 3",
+  filename='hands-on-parallel-programming-with-csharp-8-and-net-core-3.pdf'
+).link(parallelism, csharp, dotnet)
+
+add_pdf(
+  name="Hands On RESTful Web Services With ASP.NET Core 3",
+  filename='hands-on-restful-web-services-with-asp-net-core-3.pdf'
+).link(rest, aspnet)
+
+add_pdf(
+  name="Hands On Software Architecture With C# 8 And .NET Core 3",
+  filename='hands-on-software-architecture-with-csharp-8-and-net-core-3.pdf'
+).link(csharp, dotnet, software_architecture)
+
+add_pdf(
+  name="Introducing Distributed Application Runtime",
+  filename='introducing-distributed-application-runtime-dapr.pdf'
+).link(distributed_computing)
+
+add_pdf(
+  name="Introducing Microsoft Quantum Computing For Developers",
+  filename='introducing-microsoft-quantum-computing-for-developers.pdf'
+).link(quantum)
+
+add_pdf(
+  name="Introducing Net 6",
+  filename='introducing-net-6.pdf'
+).link(dotnet)
+
+add_pdf(
+  name="Introducing .NET For Apache Spark",
+  filename='introducing-net-for-apache-spark.pdf'
+).link(spark)
+
+add_pdf(
+  name="Lean Software Systems Engineering For Developers",
+  filename='lean-software-systems-engineering-for-developers.pdf'
+).link(software_development)
+
+add_pdf(
+  name="Mastering Azure API Management",
+  filename='mastering-azure-api-management.pdf'
+).link(azure)
+
+add_pdf(
+  name="Microsoft Blazor",
+  filename='microsoft-blazor.pdf'
+).link(blazor)
+
+add_pdf(
+  name="Microsoft Conversational AI Platform For Developers",
+  filename='microsoft-conversational-ai-platform-for-developers.pdf'
+).link(ai)
+
+add_pdf(
+  name="ML.NET Revealed",
+  filename='ml-net-revealed.pdf'
+).link(machine_learning, dotnet)
+
+add_pdf(
+  name=".NET Developers Guide To Augmented Reality In iOS",
+  filename='net-developers-guide-to-augmented-reality-in-ios.pdf'
+).link(dotnet, ios, ar)
+
+add_pdf(
+  name="Practical Entity Framework Core 6",
+  filename='practical-entity-framework-core-6.pdf'
+).link(entity_framework)
+
+add_pdf(
+  name="Practical Paint Net",
+  filename='practical-paint-net.pdf'
+).link(graphics)
+
+add_pdf(
+  name="Pro ASP.NET Core 6",
+  filename='pro-asp-net-core-6.pdf'
+).link(aspnet)
+
+add_pdf(
+  name="Pro ASP.NET Core Identity",
+  filename='pro-asp-net-core-identity.pdf'
+).link(aspnet)
+
+add_pdf(
+  name="Pro Cryptography And Cryptanalysis",
+  filename='pro-cryptography-and-cryptanalysis.pdf'
+).link(security)
+
+add_pdf(
+  name="Pro Microservices In Net 6",
+  filename='pro-microservices-in-net-6.pdf'
+).link(microservice)
+
+add_pdf(
+  name="Programming In C#: Exam Guide",
+  filename='programming-in-csharp-exam70-483mcsdguide.pdf'
+).link(csharp)
+
+add_pdf(
+  name="Stylish F# 6",
+  filename='stylish-fsharp-6.pdf'
+).link(fsharp)
+
+add_pdf(
+  name="Visual Studio Code Distilled",
+  filename='visual-studio-code-distilled.pdf'
+).link(vscode)
+
+
+# add_old_new_thing(add_url, oldnewthing)
