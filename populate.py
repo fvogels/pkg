@@ -57,8 +57,9 @@ security = add_node(name='Security')
 database = add_node(name='Database')
 data = add_node(name='Data Science')
 graphics = add_node(name='Graphics')
+audio = add_node(name='Audio')
 raytracing = add_node(name='Ray Tracing').link(graphics)
-parallelism = add_node(name='Parallelism').link(graphics)
+parallel_programming = add_node(name='Parallelism').link(programming_language)
 economics = add_node(name='Economics')
 politics = add_node(name='Politics')
 shell_scripting = add_node(name='Shell Scripting')
@@ -81,6 +82,10 @@ oldnewthing = add_url(
     name='The Old New Thing',
     url='https://devblogs.microsoft.com/oldnewthing/'
 ).link(blog)
+kudu = add_url(
+    name='Kudu',
+    url='https://kudu.apache.org/',
+)
 
 software = add_node(name='Software')
 editor = add_node(name='Editor')
@@ -92,7 +97,7 @@ free = add_node(name='Free')
 reference = add_node(name='Reference')
 monad = add_node(name='Monad')
 video = add_node(name='Video')
-tutorial = add_node(name='Tutorial')
+guide = add_node(name='Guide')
 virtualization = add_node(name='Virtualization')
 movie = add_node(name='Movie')
 
@@ -106,8 +111,9 @@ typescript = add_url(
 ).link(programming_language, statically_typed, object_oriented_programming, functional_programming)
 javascript = add_node(name='JavaScript').link(programming_language, dynamically_typed, functional_programming, object_oriented_programming)
 csharp = add_node(name='C#').link(programming_language, statically_typed, object_oriented_programming)
-c = add_node(name='C').link(programming_language, statically_typed)
+clang = add_node(name='C').link(programming_language, statically_typed)
 cpp = add_node(name='C++').link(programming_language, statically_typed)
+fortran = add_node(name='Fortran').link(programming_language, statically_typed)
 ruby = add_url(
     name='Ruby',
     url='https://www.ruby-lang.org/en/',
@@ -191,15 +197,26 @@ raku = add_url(
     name='Raku',
     url='https://www.raku.org/',
 ).link(programming_language, object_oriented_programming, functional_programming)
+rlang = add_url(
+    name='R',
+    url='https://www.r-project.org/',
+).link(programming_language)
+
 css = add_node(name='CSS').link(frontend, webdev)
 html = add_node(name='HTML').link(frontend, webdev)
 sql = add_node(name='SQL').link(database)
 nosql = add_node(name='NoSQL').link(database)
+package_manager = add_node(name='Package Manager')
 
 scipy = add_url(
     name='SciPy',
     url='https://scipy.org/',
 ).link(library, python, science)
+
+torchpy = add_url(
+    name='PyTorch',
+    url='https://pytorch.org/',
+).link(library, python, machine_learning)
 
 jquery = add_url(
     name='jQuery',
@@ -376,7 +393,7 @@ add_url(
     name="Don't fear the Monad",
     description="Accessible explanation of monads",
     url="https://channel9.msdn.com/Shows/Going+Deep/Brian-Beckman-Dont-fear-the-Monads",
-).link(haskell, monad, video, tutorial)
+).link(haskell, monad, video, guide)
 
 add_pdf(
     name='A Philosophy of Software Design',
@@ -476,7 +493,7 @@ add_pdf(
     name='Beginning Linux Programming',
     authors=['Neil Matthew', 'Richard Stones'],
     filename='beginning-linux-programming.zpaq',
-).link(linux, software_development, c, book)
+).link(linux, software_development, clang, book)
 
 add_pdf(
     name='Building Tools with GitHub',
@@ -554,7 +571,7 @@ add_pdf(
     name='The Art of Multiprocessor Programming',
     authors=['Maucice Herlihy', 'Nir Shavit'],
     filename='art-of-multiprocessor-programming.zpaq',
-).link(parallelism, software_development, java, book)
+).link(parallel_programming, software_development, java, book)
 
 add_pdf(
     name='Designing Web APIs',
@@ -763,7 +780,7 @@ add_url(
 add_url(
     name='Learn Git Branching',
     url='https://learngitbranching.js.org/'
-).link(tutorial, git)
+).link(guide, git)
 
 add_url(
     name='Practical Go: Real world advice for writing maintainable Go programs',
@@ -1851,8 +1868,8 @@ add_url(
 add_url(
     name="Godbolt Compiler Explorer",
     url="https://godbolt.org/",
-    description="Compiler Explorer: Website that allows to compile code using a large collection of C++ compilers"
-).link(cpp)
+    description="Compiler Explorer: Website that allows to compile code using a large collection of compilers"
+).link(programming_language)
 
 add_url(
     name="Unreal Engine",
@@ -1872,17 +1889,17 @@ add_url(
 add_url(
     name="Dive Into Docker",
     url="https://diveintodocker.com/",
-).link(docker, tutorial)
+).link(docker, guide)
 
 add_url(
     name="Docker Hub",
     url="https://hub.docker.com/",
-).link(docker, tutorial)
+).link(docker, guide)
 
 add_url(
     name="NPM",
     url="https://www.npmjs.com/",
-).link(javascript)
+).link(javascript, package_manager)
 
 add_url(
     name="NodeJS",
@@ -2047,7 +2064,7 @@ add_pdf(
 add_pdf(
   name="Hands On Parallel Programming With C# 8 And .NET Core 3",
   filename='hands-on-parallel-programming-with-csharp-8-and-net-core-3.pdf'
-).link(parallelism, csharp, dotnet)
+).link(parallel_programming, csharp, dotnet)
 
 add_pdf(
   name="Hands On RESTful Web Services With ASP.NET Core 3",
@@ -2153,6 +2170,387 @@ add_pdf(
   name="Visual Studio Code Distilled",
   filename='visual-studio-code-distilled.pdf'
 ).link(vscode)
+
+add_url(
+    name='Jekyll',
+    url='https://jekyllrb.com/',
+).link(ruby, html, css)
+
+add_url(
+    name='Jekyll',
+    url='https://jekyllrb.com/',
+).link(ruby, html, css)
+
+add_url(
+    name='Bundler',
+    url='https://bundler.io/',
+).link(ruby, package_manager)
+
+add_url(
+    name='Pip',
+    url='https://pypi.org/project/pip/',
+).link(python, package_manager)
+
+add_url(
+    name='RubyMotion',
+    url='http://www.rubymotion.com/',
+).link(ruby, mobiledev, framework)
+
+add_url(
+    name='FastAPI',
+    url='https://fastapi.tiangolo.com/',
+).link(python, rest)
+
+add_url(
+    name='Pylons',
+    url='https://pylonsproject.org/',
+).link(python, webdev)
+
+add_url(
+    name='Pyramid',
+    url='https://trypyramid.com/',
+).link(python, backend, framework)
+
+add_url(
+     name='Pillow',
+     url='https://pillow.readthedocs.io/',
+).link(python, graphics, library)
+
+add_url(
+     name='Pandas',
+     url='https://pandas.pydata.org/',
+).link(python, data, library)
+
+add_url(
+     name='PyGame',
+     url='https://www.pygame.org',
+).link(python, gamedev, graphics, audio, library)
+
+add_url(
+     name='How To Package Your Python Code',
+     url='https://python-packaging.readthedocs.io/',
+).link(python, package_manager, guide)
+
+add_url(
+     name='Virtualenv',
+     url='https://virtualenv.pypa.io',
+).link(python, package_manager)
+
+add_url(
+     name='Pipenv',
+     url='https://pipenv.pypa.io/en/latest/',
+).link(python, package_manager)
+
+add_url(
+  name="Advanced Analytics With Spark.pdf",
+  url='advanced-analytics-with-spark.pdf',
+).link(book, spark, data)
+
+add_url(
+  name="Architecting Modern Data Platforms.pdf",
+  url='architecting-modern-data-platforms.pdf',
+).link(book, data)
+
+add_url(
+  name="Foundations For Architecting Data Solutions.pdf",
+  url='foundations-for-architecting-data-solutions.pdf',
+).link(book, data)
+
+add_url(
+  name="Getting Started With Kudu.pdf",
+  url='getting-started-with-kudu.pdf',
+).link(book, kudu)
+
+add_url(
+  name="Graphing Data With R.pdf",
+  url='graphing-data-with-r.pdf',
+).link(book, rlang, data, graphics)
+
+add_url(
+  name="Kafka: The Definitive Guide.pdf",
+  url='kafka-the-definitive-guide.pdf',
+).link(book, kafka)
+
+add_url(
+  name="Natural Language Processing With Pytorch.pdf",
+  url='natural-language-processing-with-pytorch.pdf',
+).link(book, nlp)
+
+add_url(
+  name="Practical Statistics For Data Scientists.pdf",
+  url='practical-statistics-for-data-scientists.pdf',
+).link(book, math, data)
+
+add_url(
+  name="Streaming Systems.pdf",
+  url='streaming-systems.pdf',
+).link(book)
+
+add_url(
+  name="Analyzing Health Data In R For SAS Users.pdf",
+  url='analyzing-health-data-in-r-for-sas-users.pdf',
+).link(book, rlang, data)
+
+add_url(
+  name="Bayesian Programming.pdf",
+  url='bayesian-programming.pdf',
+).link(book, math)
+
+add_url(
+  name="Big Data In Complex And Social Networks.pdf",
+  url='big-data-in-complex-and-social-networks.pdf',
+).link(book, data)
+
+add_url(
+  name="Big Data Management And Processing.pdf",
+  url='big-data-management-and-processing.pdf',
+).link(book, data)
+
+add_url(
+  name="Data Analysis For The Life Sciences With R.pdf",
+  url='data-analysis-for-the-life-sciences-with-r.pdf',
+).link(book, data, rlang)
+
+add_url(
+  name="Data Classification.pdf",
+  url='data-classification.pdf',
+).link(book, data)
+
+add_url(
+  name="Data Clustering In C++.pdf",
+  url='data-clustering-in-cplusplus.pdf',
+).link(book, data, cpp)
+
+add_url(
+  name="Data Clustering.pdf",
+  url='data-clustering.pdf',
+).link(book, data)
+
+add_url(
+  name="Data Science Foundations Geometry.pdf",
+  url='data-science-foundations-geometry.pdf',
+).link(book, data)
+
+add_url(
+  name="Displaying Time Series Spatial And Space Time Data With R.pdf",
+  url='displaying-time-series-spatial-and-space-time-data-with-r.pdf',
+).link(book, data, rlang)
+
+add_url(
+  name="Essentials Of Data Science.pdf",
+  url='essentials-of-data-science.pdf',
+).link(book, data)
+
+add_url(
+  name="Feature Engineering For Machine Learning And Data Analytics.pdf",
+  url='feature-engineering-for-machine-learning-and-data-analytics.pdf',
+).link(book, data)
+
+add_url(
+  name="Frontiers Of Data Science.pdf",
+  url='frontiers-of-data-science.pdf',
+).link(book, data)
+
+add_url(
+  name="Healthcare Data Analytics.pdf",
+  url='healthcare-data-analytics.pdf',
+).link(book, data)
+
+add_url(
+  name="High Performance Computing For Big Data Methodologies And Applications.pdf",
+  url='high-performance-computing-for-big-data-methodologies-and-applications.pdf',
+).link(book)
+
+add_url(
+  name="Implementing Reproducable Research.pdf",
+  url='implementing-reproducable-research.pdf',
+).link(book)
+
+add_url(
+  name="Introduction To High Dimensional Statistics.pdf",
+  url='introduction-to-high-dimensional-statistics.pdf',
+).link(book, math)
+
+add_url(
+  name="R Primer.pdf",
+  url='r-primer.pdf',
+).link(book, rlang)
+
+add_url(
+  name="R Student Companion.pdf",
+  url='r-student-companion.pdf',
+).link(book, rlang)
+
+add_url(
+  name="Spectral Feature Selection For Data Mining.pdf",
+  url='spectral-feature-selection-for-data-mining.pdf',
+).link(book, data)
+
+add_url(
+  name="Statistical Computing In C++ And R.pdf",
+  url='statistical-computing-in-cplusplus-and-r.pdf',
+).link(book, data, rlang, cpp, math)
+
+add_url(
+  name="Testing R Code.pdf",
+  url='testing-r-code.pdf',
+).link(book, rlang, testing)
+
+add_url(
+  name="Text Mining And Visualization.pdf",
+  url='text-mining-and-visualization.pdf',
+).link(book, graphics, data)
+
+add_url(
+  name="A Beginners Guide To Scala Object Orientation And Functional Programming.pdf",
+  url='a-beginners-guide-to-scala-object-orientation-and-functional-programming.pdf',
+).link(book, scala, object_oriented_programming, functional_programming)
+
+add_url(
+  name="Advanced Guide To Python 3 Programming.pdf",
+  url='advanced-guide-to-python-3-programming.pdf',
+).link(book, python)
+
+add_url(
+  name="An Introduction To Machine Learning.pdf",
+  url='an-introduction-to-machine-learning.pdf',
+).link(book, machine_learning)
+
+add_url(
+  name="Analysis For Computer Scientists.pdf",
+  url='analysis-for-computer-scientists.pdf',
+).link(book, math)
+
+add_url(
+  name="Beginners Guide To Python 3.pdf",
+  url='beginners-guide-to-python3.pdf',
+).link(book, python)
+
+add_url(
+  name="Concise Guide To Software Engineering.pdf",
+  url='concise-guide-to-software-engineering.pdf',
+).link(book, software_development)
+
+add_url(
+  name="Data Science And Predictive Analytics.pdf",
+  url='data-science-and-predictive-analytics.pdf',
+).link(book, data)
+
+add_url(
+  name="Digital Image Processing.pdf",
+  url='digital-image-processing.pdf',
+).link(book, graphics)
+
+add_url(
+  name="Eye Tracking Methodology.pdf",
+  url='eye-tracking-methodology.pdf',
+).link(book, ai)
+
+add_url(
+  name="Foundations Of Programming Languages.pdf",
+  url='foundations-of-programming-languages.pdf',
+).link(book, programming_language)
+
+add_url(
+  name="Fundamentals Of Business Process Management.pdf",
+  url='fundamentals-of-business-process-management.pdf',
+).link(book)
+
+add_url(
+  name="Fundamentals Of Java Programming.pdf",
+  url='fundamentals-of-java-programming.pdf',
+).link(book, java)
+
+add_url(
+  name="Guide To Competitive Programming.pdf",
+  url='guide-to-competitive-programming.pdf',
+).link(book, software_development)
+
+add_url(
+  name="Guide To Computer Network Security.pdf",
+  url='guide-to-computer-network-security.pdf',
+).link(book, security, networks)
+
+add_url(
+  name="Guide To Discrete Mathematics.pdf",
+  url='guide-to-discrete-mathematics.pdf',
+).link(book, math)
+
+add_url(
+  name="Guide To Scientific Computing In C.pdf",
+  url='guide-to-scientific-computing-in-c.pdf',
+).link(book, math, clang)
+
+add_url(
+  name="Introduction To Artificial Intelligence.pdf",
+  url='introduction-to-artificial-intell.pdf',
+).link(book, ai)
+
+add_url(
+  name="Introduction To Data Science.pdf",
+  url='introduction-to-data-science.pdf',
+).link(book, data)
+
+add_url(
+  name="Introduction To Deep Learning.pdf",
+  url='introduction-to-deep-learning.pdf',
+).link(book, ai)
+
+add_url(
+  name="Introduction To Parallel Programming.pdf",
+  url='introduction-to-parallel-programming.pdf',
+).link(book, parallel_programming)
+
+add_url(
+  name="Introduction To Programming With Fortran.pdf",
+  url='introduction-to-programming-with-fortran.pdf',
+).link(book, fortran)
+
+add_url(
+  name="Introductory Computer Forensics.pdf",
+  url='introductory-computer-forensics.pdf',
+).link(book, security)
+
+add_url(
+  name="Java In Two Semesters.pdf",
+  url='java-in-two-semesters.pdf',
+).link(book, java)
+
+add_url(
+  name="Logical Foundations Of Cyber Physical Systems.pdf",
+  url='logical-foundations-of-cyber-physical-systems.pdf',
+).link(book)
+
+add_url(
+  name="Neural Networks And Deep Learning.pdf",
+  url='neural-networks-and-deep-learning.pdf',
+).link(book, ai)
+
+add_url(
+  name="Principles Of Data Mining.pdf",
+  url='principles-of-data-mining.pdf',
+).link(book, data)
+
+add_url(
+  name="Probability And Statistics For Computer Science.pdf",
+  url='probability-and-statistics-for-computer-science.pdf',
+).link(book, math)
+
+add_url(
+  name="Recommender Systems.pdf",
+  url='recommender-systems.pdf',
+).link(book, ai)
+
+add_url(
+  name="Systems Programming In Linux Unix.pdf",
+  url='systems-programming-in-linux-unix.pdf',
+).link(book, linux)
+
+add_url(
+  name="The Data Science Design Manual.pdf",
+  url='the-data-science-design-manual.pdf',
+).link(book, data)
+
 
 
 # add_old_new_thing(add_url, oldnewthing)
