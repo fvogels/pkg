@@ -32,11 +32,10 @@ def find(names):
         {
             descendant
             for node in graph.find_on_name(name)
-            for descendant in node.descendants
+            for descendant in node.descendants()
         }
         for name in names
     ]
-    print(nodesets)
     intersection = reduce(lambda x, y: x & y, nodesets)
 
     console = Console()
@@ -50,10 +49,12 @@ def find(names):
 
 
 @cli.command()
-def graph():
+@click.argument('names', nargs=-1)
+@click.option('--depth', default=1)
+def graph(names, depth):
     with tempfile.NamedTemporaryFile('w', delete=False, suffix='.html') as file:
         graph = Graph()
-        html = generate_html(graph)
+        html = generate_html(graph, names, depth)
         print(html, file=file)
     webbrowser.open(file.name)
 

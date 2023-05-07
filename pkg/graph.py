@@ -60,16 +60,16 @@ class Node:
             ]
         return self.__children_cache
 
-    @property
-    def descendants(self):
+    def descendants(self, max_depth=None):
+        max_depth = max_depth or float('inf')
         result = set()
-        todo = [self]
+        todo = [(self, 0)]
         while todo:
-            next = todo.pop()
-            if next not in result:
+            next, depth = todo.pop()
+            if depth <= max_depth and next not in result:
                 result.add(next)
                 for child in next.children:
-                    todo.append(child)
+                    todo.append((child, depth + 1))
         return result
 
     def __getattr__(self, attribute):
