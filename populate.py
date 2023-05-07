@@ -370,11 +370,6 @@ flutter = add_url(
     url='https://flutter.dev/',
 ).link(dart, framework)
 
-xamarin = add_url(
-    name='Xamarin',
-    url='https://dotnet.microsoft.com/en-us/apps/xamarin',
-).link(dotnet)
-
 ionic = add_url(
     name='Ionic',
     url='https://ionicframework.com/',
@@ -394,6 +389,11 @@ dotnet = add_url(
     name='.NET',
     url='https://dotnet.microsoft.com/',
 ).link(framework, microsoft)
+
+xamarin = add_url(
+    name='Xamarin',
+    url='https://dotnet.microsoft.com/en-us/apps/xamarin',
+).link(dotnet)
 
 blazor = add_url(
     name='Blazor',
@@ -804,7 +804,7 @@ add_pdf(
 ).link(programming_language, computer_science, book)
 
 add_pdf(
-    name='A Survey of Porgramming Language Memory Models',
+    name='A Survey of Programming Language Memory Models',
     authors=['Evgenii Moiseenko', 'Anton Podkopaev', 'Dmitrii Koznov'],
     filename='memory-models-survey.zpaq',
 ).link(computer_science, book)
@@ -2738,7 +2738,7 @@ add_url(
     url='https://mitpress.mit.edu/sites/default/files/sicp/index.html',
 ).link(racket, free, book)
 
-add_url(
+unity = add_url(
     name='Unity Game Engine',
     url='https://unity.com/',
 ).link(csharp, graphics, gamedev)
@@ -2759,7 +2759,7 @@ add_pdf(
 ).link(book, vuejs)
 
 add_pdf(
-  name="Clean Code In Javascript",
+  name="Clean Code In JavaScript",
   filename='clean-code-in-javascript.zpaq',
 ).link(book, javascript)
 
