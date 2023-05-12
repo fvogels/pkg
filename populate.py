@@ -83,6 +83,7 @@ access = add_node(name='Access').link(microsoft)
 ar = add_node(name='Augmented Reality')
 vr = add_node(name='Virtual Reality')
 agile = add_node(name='Agile Programming').link(software_development)
+bundler = add_node(name='Bundler')
 
 arduino = add_url(
     name='Arduino',
@@ -136,12 +137,13 @@ factor = add_url(
     url='https://factorcode.org/',
 ).link(programming_language, stack_based, dynamically_typed)
 
+javascript = add_node(name='JavaScript').link(programming_language, dynamically_typed, functional_programming, object_oriented_programming)
+
 typescript = add_url(
     name='TypeScript',
     url='https://www.typescriptlang.org/'
-).link(programming_language, statically_typed, object_oriented_programming, functional_programming)
+).link(programming_language, statically_typed, object_oriented_programming, functional_programming, javascript)
 
-javascript = add_node(name='JavaScript').link(programming_language, dynamically_typed, functional_programming, object_oriented_programming)
 csharp = add_node(name='C#').link(programming_language, statically_typed, object_oriented_programming)
 clang = add_node(name='C').link(programming_language, statically_typed)
 cpp = add_node(name='C++').link(programming_language, statically_typed)
@@ -280,9 +282,16 @@ idris = add_url(
 ).link(programming_language, functional_programming, dependent_typing)
 
 
-
+markup_language = add_node(name='Markup Language')
 css = add_node(name='CSS').link(frontend, webdev)
-html = add_node(name='HTML').link(frontend, webdev)
+html = add_node(name='HTML').link(frontend, webdev, markup_language)
+markdown = add_node(name='Markdown').link(markup_language)
+
+asciidoc = add_url(
+    name='AsciiDoc',
+    url='https://asciidoc.org/'
+).link(markup_language)
+
 sql = add_node(name='SQL').link(database)
 nosql = add_node(name='NoSQL').link(database)
 package_manager = add_node(name='Package Manager')
@@ -306,7 +315,7 @@ tensorflow = add_url(
 jquery = add_url(
     name='jQuery',
     url='https://jquery.com/',
-).link(library, javascript, typescript, webdev, frontend)
+).link(library, javascript, webdev, frontend)
 
 mysql = add_url(
     name='MySQL',
@@ -348,7 +357,7 @@ spring = add_url(
 react_native = add_url(
     name='React Native',
     url='https://reactnative.dev/',
-).link(frontend, library, javascript, typescript, mobiledev)
+).link(frontend, library, javascript, mobiledev)
 
 android = add_url(
     name='Android',
@@ -2061,7 +2070,32 @@ svelte = add_url(
 add_url(
     name="Webpack",
     url="https://webpack.js.org/",
-).link(javascript)
+).link(javascript, bundler)
+
+add_url(
+    name="Vite",
+    url="https://vitejs.dev/",
+).link(javascript, bundler)
+
+add_url(
+    name="SWC",
+    url="https://swc.rs/",
+).link(javascript, bundler)
+
+add_url(
+    name="Parcel",
+    url="https://parceljs.org/",
+).link(javascript, bundler)
+
+add_url(
+    name="Rollup",
+    url="https://rollupjs.org/",
+).link(javascript, bundler)
+
+add_url(
+    name="ESBuild",
+    url="https://esbuild.github.io/",
+).link(javascript, bundler)
 
 add_url(
     name="Express",
@@ -2749,566 +2783,604 @@ add_url(
 ).link(python, data)
 
 add_pdf(
-  name="Angular Projects",
-  filename='angular-projects.zpaq',
+    name="Angular Projects",
+    filename='angular-projects.zpaq',
 ).link(book, angular)
 
 add_pdf(
-  name="Building Forms With Vue.js",
-  filename='building-forms-with-vue-js.zpaq',
+    name="Building Forms With Vue.js",
+    filename='building-forms-with-vue-js.zpaq',
 ).link(book, vuejs)
 
 add_pdf(
-  name="Clean Code In JavaScript",
-  filename='clean-code-in-javascript.zpaq',
+    name="Clean Code In JavaScript",
+    filename='clean-code-in-javascript.zpaq',
 ).link(book, javascript)
 
 add_pdf(
-  name="Full Stack React Projects",
-  filename='full-stack-react-projects.zpaq',
+    name="Full Stack React Projects",
+    filename='full-stack-react-projects.zpaq',
 ).link(book, react, fullstack)
 
 add_pdf(
-  name="Hands On Full Stack Development With Spring Boot 2 And React",
-  filename='hands-on-full-stack-development-with-spring-boot-2-and-react.zpaq',
+    name="Hands On Full Stack Development With Spring Boot 2 And React",
+    filename='hands-on-full-stack-development-with-spring-boot-2-and-react.zpaq',
 ).link(book, fullstack, spring, react)
 
 add_pdf(
-  name="Hands On Javascript For Python Developers",
-  filename='hands-on-javascript-for-python-developers.zpaq',
+    name="Hands On Javascript For Python Developers",
+    filename='hands-on-javascript-for-python-developers.zpaq',
 ).link(book, javascript, python)
 
 add_pdf(
-  name="Learn React Hooks",
-  filename='learn-react-hooks.zpaq',
+    name="Learn React Hooks",
+    filename='learn-react-hooks.zpaq',
 ).link(book, react)
 
 add_pdf(
-  name="Learning Angular",
-  filename='learning-angular.zpaq',
+    name="Learning Angular",
+    filename='learning-angular.zpaq',
 ).link(book, angular)
 
 add_pdf(
-  name="React And React Native",
-  filename='react-and-react-native.zpaq',
+    name="React And React Native",
+    filename='react-and-react-native.zpaq',
 ).link(book, react, react_native)
 
 add_pdf(
-  name="React Design Patterns And Best Practices",
-  filename='react-design-patterns-and-best-practices.zpaq',
+    name="React Design Patterns And Best Practices",
+    filename='react-design-patterns-and-best-practices.zpaq',
 ).link(book, react)
 
 add_pdf(
-  name="React Projects",
-  filename='react-projects.zpaq',
+    name="React Projects",
+    filename='react-projects.zpaq',
 ).link(book, react)
 
 add_pdf(
-  name="Redux Quick Start Guide",
-  filename='redux-quick-start-guide.zpaq',
+    name="Redux Quick Start Guide",
+    filename='redux-quick-start-guide.zpaq',
 ).link(book, redux)
 
 add_pdf(
-  name="Svelte 3 Up And Running",
-  filename='svelte-3-up-and-running.zpaq',
+    name="Svelte 3 Up And Running",
+    filename='svelte-3-up-and-running.zpaq',
 ).link(book, svelte)
 
 add_pdf(
-  name="Vue Cli 3 Quick Start Guide",
-  filename='vue-cli-3-quick-start-guide.zpaq',
+    name="Vue Cli 3 Quick Start Guide",
+    filename='vue-cli-3-quick-start-guide.zpaq',
 ).link(book, vuejs)
 
 add_pdf(
-  name="Vue.js 3 Cookbook",
-  filename='vue-js-3-cookbook.zpaq',
+    name="Vue.js 3 Cookbook",
+    filename='vue-js-3-cookbook.zpaq',
 ).link(book, vuejs)
 
 add_pdf(
-  name="Designing Elixir Systems With OTP",
-  filename='designing-elixir-systems-with-otp.zpaq',
+    name="Designing Elixir Systems With OTP",
+    filename='designing-elixir-systems-with-otp.zpaq',
 ).link(book, elixir)
 
 add_pdf(
-  name="Domain Modeling Made Functional",
-  filename='domain-modeling-made-functional.zpaq',
+    name="Domain Modeling Made Functional",
+    filename='domain-modeling-made-functional.zpaq',
 ).link(book, functional_programming)
 
 add_pdf(
-  name="Functional Programming A Pragpub Anthology",
-  filename='functional-programming-a-pragpub-anthology.zpaq',
+    name="Functional Programming A Pragpub Anthology",
+    filename='functional-programming-a-pragpub-anthology.zpaq',
 ).link(book, functional_programming, clojure, elixir, haskell, scala, swift)
 
 add_pdf(
-  name="Functional Programming Patterns In Scala And Clojure",
-  filename='functional-programming-patterns-in-scala-and-clojure.zpaq',
+    name="Functional Programming Patterns In Scala And Clojure",
+    filename='functional-programming-patterns-in-scala-and-clojure.zpaq',
 ).link(book, functional_programming, scala, clojure)
 
 add_pdf(
-  name="Functional Web Development With Elixir OTP And Phoenix",
-  filename='functional-web-development-with-elixir-otp-and-phoenix.zpaq',
+    name="Functional Web Development With Elixir OTP And Phoenix",
+    filename='functional-web-development-with-elixir-otp-and-phoenix.zpaq',
 ).link(book, phoenix)
 
 add_pdf(
-  name="Getting Clojure",
-  filename='getting-clojure.zpaq',
+    name="Getting Clojure",
+    filename='getting-clojure.zpaq',
 ).link(book, clojure)
 
 add_pdf(
-  name="Learn Functional Programming With Elixir",
-  filename='learn-functional-programming-with-elixir.zpaq',
+    name="Learn Functional Programming With Elixir",
+    filename='learn-functional-programming-with-elixir.zpaq',
 ).link(book, functional_programming, elixir)
 
 add_pdf(
-  name="Modern Systems Programming With Scala Native",
-  filename='modern-systems-programming-with-scala-native.zpaq',
+    name="Modern Systems Programming With Scala Native",
+    filename='modern-systems-programming-with-scala-native.zpaq',
 ).link(book, scala)
 
 add_pdf(
-  name="Pragmatic Scala",
-  filename='pragmatic-scala.zpaq',
+    name="Pragmatic Scala",
+    filename='pragmatic-scala.zpaq',
 ).link(book, scala)
 
 add_pdf(
-  name="Programmer Passport Elixir",
-  filename='programmer-passport-elixir.zpaq',
+    name="Programmer Passport Elixir",
+    filename='programmer-passport-elixir.zpaq',
 ).link(book, elixir)
 
 add_pdf(
-  name="Programmer Passport OTP In Elixir",
-  filename='programmer-passport-otp-in-elixir.zpaq',
+    name="Programmer Passport OTP In Elixir",
+    filename='programmer-passport-otp-in-elixir.zpaq',
 ).link(book, elixir)
 
 add_pdf(
-  name="Programming Clojure",
-  filename='programming-clojure.zpaq',
+    name="Programming Clojure",
+    filename='programming-clojure.zpaq',
 ).link(book, clojure)
 
 add_pdf(
-  name="Programming DSLs In Kotlin",
-  filename='programming-dsls-in-kotlin.zpaq',
+    name="Programming DSLs In Kotlin",
+    filename='programming-dsls-in-kotlin.zpaq',
 ).link(book, kotlin, language_oriented_programming)
 
 add_pdf(
-  name="Programming Elixir 1 6",
-  filename='programming-elixir-1-6.zpaq',
+    name="Programming Elixir 1 6",
+    filename='programming-elixir-1-6.zpaq',
 ).link(book, elixir)
 
 add_pdf(
-  name="Programming Elm",
-  filename='programming-elm.zpaq',
+    name="Programming Elm",
+    filename='programming-elm.zpaq',
 ).link(book, elm)
 
 add_pdf(
-  name="Programming Kotlin",
-  filename='programming-kotlin.zpaq',
+    name="Programming Kotlin",
+    filename='programming-kotlin.zpaq',
 ).link(book, kotlin)
 
 add_pdf(
-  name="Rust Brain Teasers",
-  filename='rust-brain-teasers.zpaq',
+    name="Rust Brain Teasers",
+    filename='rust-brain-teasers.zpaq',
 ).link(book, rust)
 
 add_pdf(
-  name="Seven Concurrency Models In Seven Weeks",
-  filename='seven-concurrency-models-in-seven-weeks.zpaq',
+    name="Seven Concurrency Models In Seven Weeks",
+    filename='seven-concurrency-models-in-seven-weeks.zpaq',
 ).link(book, parallel_programming)
 
 add_pdf(
-  name="Web Development With Reason ML",
-  filename='web-development-with-reason-ml.zpaq',
+    name="Web Development With Reason ML",
+    filename='web-development-with-reason-ml.zpaq',
 ).link(book, webdev, frontend, reasonml)
 
 add_pdf(
-  name="97 Things Every Programmer Should Know",
-  filename='97-things-every-programmer-should-know.zpaq',
+    name="97 Things Every Programmer Should Know",
+    filename='97-things-every-programmer-should-know.zpaq',
 ).link(book)
 
 add_pdf(
-  name="Algorithms In A Nutshell",
-  filename='algorithms-in-a-nutshell.zpaq',
+    name="Algorithms In A Nutshell",
+    filename='algorithms-in-a-nutshell.zpaq',
 ).link(book, algorithms)
 
 add_pdf(
-  name="Apprenticeship Patterns",
-  filename='apprenticeship-patterns.zpaq',
+    name="Apprenticeship Patterns",
+    filename='apprenticeship-patterns.zpaq',
 ).link(book, software_development)
 
 add_pdf(
-  name="Art Of Readable Code",
-  filename='art-of-readable-code.zpaq',
+    name="Art Of Readable Code",
+    filename='art-of-readable-code.zpaq',
 ).link(book, software_development)
 
 add_pdf(
-  name="Becoming A Better Programmer",
-  filename='becoming-a-better-programmer.zpaq',
+    name="Becoming A Better Programmer",
+    filename='becoming-a-better-programmer.zpaq',
 ).link(book, software_development)
 
 add_pdf(
-  name="Cloud Native",
-  filename='cloud-native.zpaq',
+    name="Cloud Native",
+    filename='cloud-native.zpaq',
 ).link(book, cloud)
 
 add_pdf(
-  name="Coping Skills",
-  filename='coping-skills.zpaq',
+    name="Coping Skills",
+    filename='coping-skills.zpaq',
 ).link(book)
 
 add_pdf(
-  name="Crosswords Of Wisdom Volume 1",
-  filename='crosswords-of-wisdom-vol1.zpaq',
+    name="Crosswords Of Wisdom Volume 1",
+    filename='crosswords-of-wisdom-vol1.zpaq',
 ).link(book, fun)
 
 add_pdf(
-  name="Crosswords Of Wisdom Volume 2",
-  filename='crosswords-of-wisdom-vol2.zpaq',
+    name="Crosswords Of Wisdom Volume 2",
+    filename='crosswords-of-wisdom-vol2.zpaq',
 ).link(book, fun)
 
 add_pdf(
-  name="Head First Agile",
-  filename='head-firs-tagile.zpaq',
+    name="Head First Agile",
+    filename='head-firs-tagile.zpaq',
 ).link(book, agile)
 
 add_pdf(
-  name="Head First Design Patterns",
-  filename='head-first-design-patterns.zpaq',
+    name="Head First Design Patterns",
+    filename='head-first-design-patterns.zpaq',
 ).link(book, software_development)
 
 add_pdf(
-  name="Introduction To Machine Learning With Python",
-  filename='introduction-to-machine-learning-with-python.zpaq',
+    name="Introduction To Machine Learning With Python",
+    filename='introduction-to-machine-learning-with-python.zpaq',
 ).link(book, python, machine_learning)
 
 add_pdf(
-  name="Learning CoreDNS",
-  filename='learning-coredns.zpaq',
+    name="Learning CoreDNS",
+    filename='learning-coredns.zpaq',
 ).link(book, networks)
 
 add_pdf(
-  name="Programming Quantum Computing",
-  filename='programming-quantum-computing.zpaq',
+    name="Programming Quantum Computing",
+    filename='programming-quantum-computing.zpaq',
 ).link(book, quantum)
 
 add_pdf(
-  name="Real World Software Development",
-  filename='real-world-software-development.zpaq',
+    name="Real World Software Development",
+    filename='real-world-software-development.zpaq',
 ).link(book, software_development)
 
 add_pdf(
-  name="Regular Expressions Cookbook",
-  filename='regular-expressions-cookbook.zpaq',
+    name="Regular Expressions Cookbook",
+    filename='regular-expressions-cookbook.zpaq',
 ).link(book, regex)
 
 add_pdf(
-  name="Technology Strategy Patterns",
-  filename='technology-strategy-patterns.zpaq',
+    name="Technology Strategy Patterns",
+    filename='technology-strategy-patterns.zpaq',
 ).link(book)
 
 add_pdf(
-  name="Test Driven Development With Python",
-  filename='test-driven-development-with-python.zpaq',
+    name="Test Driven Development With Python",
+    filename='test-driven-development-with-python.zpaq',
 ).link(book, tdd, python)
 
 add_pdf(
-  name="The Art Of Captivating Conversation",
-  filename='the-art-of-captivating-conversation.zpaq',
+    name="The Art Of Captivating Conversation",
+    filename='the-art-of-captivating-conversation.zpaq',
 ).link(book)
 
 add_pdf(
-  name="Angular And Deep Learning Pocket Primer",
-  filename='angular-and-deep-learning-pocket-primer.zpaq',
+    name="Angular And Deep Learning Pocket Primer",
+    filename='angular-and-deep-learning-pocket-primer.zpaq',
 ).link(book, angular, ai)
 
 add_pdf(
-  name="Angular And Machine Learning Pocket Primer",
-  filename='angular-and-machine-learning-pocket-primer.zpaq',
+    name="Angular And Machine Learning Pocket Primer",
+    filename='angular-and-machine-learning-pocket-primer.zpaq',
 ).link(book, angular, machine_learning)
 
 add_pdf(
-  name="Bash Command Line And Shell Scripts Pocket Primer",
-  filename='bash-command-line-and-shell-scripts-pocket-primer.zpaq',
+    name="Bash Command Line And Shell Scripts Pocket Primer",
+    filename='bash-command-line-and-shell-scripts-pocket-primer.zpaq',
 ).link(book, shell_scripting)
 
 add_pdf(
-  name="C Programming Pocket Primer",
-  filename='c-programming-pocket-primer.zpaq',
+    name="C Programming Pocket Primer",
+    filename='c-programming-pocket-primer.zpaq',
 ).link(book, clang)
 
 add_pdf(
-  name="Cloud Computing Basics A Self Teaching Introduction",
-  filename='cloud-computing-basics-a-self-teaching-introduction.zpaq',
+    name="Cloud Computing Basics A Self Teaching Introduction",
+    filename='cloud-computing-basics-a-self-teaching-introduction.zpaq',
 ).link(book, cloud)
 
 add_pdf(
-  name="Computer Graphics Programmming In OpenGL Using C++",
-  filename='computer-graphics-programmming-in-opengl-using-cplusplus.zpaq',
+    name="Computer Graphics Programmming In OpenGL Using C++",
+    filename='computer-graphics-programmming-in-opengl-using-cplusplus.zpaq',
 ).link(book, graphics, opengl, cpp)
 
 add_pdf(
-  name="Cybersecurity: A Self Teaching Introduction",
-  filename='cybersecurity-a-self-teaching-introduction.zpaq',
+    name="Cybersecurity: A Self Teaching Introduction",
+    filename='cybersecurity-a-self-teaching-introduction.zpaq',
 ).link(book, security)
 
 add_pdf(
-  name="Data Analysis For Business Decisions",
-  filename='data-analysis-for-business-decisions.zpaq',
+    name="Data Analysis For Business Decisions",
+    filename='data-analysis-for-business-decisions.zpaq',
 ).link(book, data)
 
 add_pdf(
-  name="Data Science Tools R, Excel, Knime, Openoffice",
-  filename='data-science-tools-r-excel-knime-openoffice.zpaq',
+    name="Data Science Tools R, Excel, Knime, Openoffice",
+    filename='data-science-tools-r-excel-knime-openoffice.zpaq',
 ).link(book, rlang, data, excel, knime)
 
 add_pdf(
-  name="Data Structures And Program Design Using Java",
-  filename='data-structures-and-program-design-using-java.zpaq',
+    name="Data Structures And Program Design Using Java",
+    filename='data-structures-and-program-design-using-java.zpaq',
 ).link(book, data_structures, java)
 
 add_pdf(
-  name="Data Structures And Program Design Using Python",
-  filename='data-structures-and-program-design-using-python.zpaq',
+    name="Data Structures And Program Design Using Python",
+    filename='data-structures-and-program-design-using-python.zpaq',
 ).link(book, data_structures, python)
 
 add_pdf(
-  name="Flow Chart And Algorithm Basics",
-  filename='flow-chart-and-algorithm-basics.zpaq',
+    name="Flow Chart And Algorithm Basics",
+    filename='flow-chart-and-algorithm-basics.zpaq',
 ).link(book, algorithms)
 
 add_pdf(
-  name="Game Testing",
-  filename='game-testing.zpaq',
+    name="Game Testing",
+    filename='game-testing.zpaq',
 ).link(book, gamedev, testing)
 
 add_pdf(
-  name="Intro 3D Game Programming DirectX 12",
-  filename='intro-3d-game-programming-dx12.zpaq',
+    name="Intro 3D Game Programming DirectX 12",
+    filename='intro-3d-game-programming-dx12.zpaq',
 ).link(book, graphics, dx12)
 
 add_pdf(
-  name="Mathematics For Computer Graphics And Game Programming",
-  filename='mathematics-for-computer-graphics-and-game-programming.zpaq',
+    name="Mathematics For Computer Graphics And Game Programming",
+    filename='mathematics-for-computer-graphics-and-game-programming.zpaq',
 ).link(book, math, graphics, gamedev)
 
 add_pdf(
-  name="Microsoft Access 2019 Programming By Example",
-  filename='microsoft-access-2019-programming-by-example.zpaq',
+    name="Microsoft Access 2019 Programming By Example",
+    filename='microsoft-access-2019-programming-by-example.zpaq',
 ).link(book, access)
 
 add_pdf(
-  name="Microsoft Excel 2019 Programming By Example",
-  filename='ms-excel-2019-programming-by-example.zpaq',
+    name="Microsoft Excel 2019 Programming By Example",
+    filename='ms-excel-2019-programming-by-example.zpaq',
 ).link(book, excel)
 
 add_pdf(
-  name="Network Security And Cryptography",
-  filename='network-security-and-cryptography.zpaq',
+    name="Network Security And Cryptography",
+    filename='network-security-and-cryptography.zpaq',
 ).link(book, networks, security)
 
 add_pdf(
-  name="Programming Fundamentals Using Java A Game Application Approach",
-  filename='programming-fundamentals-using-java-a-game-application-approach.zpaq',
+    name="Programming Fundamentals Using Java A Game Application Approach",
+    filename='programming-fundamentals-using-java-a-game-application-approach.zpaq',
 ).link(book, java, gamedev)
 
 add_pdf(
-  name="Programming Fundamentals Using Matlab",
-  filename='programming-fundamentals-using-matlab.zpaq',
+    name="Programming Fundamentals Using Matlab",
+    filename='programming-fundamentals-using-matlab.zpaq',
 ).link(book, matlab)
 
 add_pdf(
-  name="Python 3 For Machine Learning",
-  filename='python-3-for-machine-learning.zpaq',
+    name="Python 3 For Machine Learning",
+    filename='python-3-for-machine-learning.zpaq',
 ).link(book, python, machine_learning)
 
 add_pdf(
-  name="Python 3 Programming Pocket Primer",
-  filename='python-3-programming-pocket-primer.zpaq',
+    name="Python 3 Programming Pocket Primer",
+    filename='python-3-programming-pocket-primer.zpaq',
 ).link(book, python)
 
 add_pdf(
-  name="Python An Introduction To Programming",
-  filename='python-an-introduction-to-programming.zpaq',
+    name="Python An Introduction To Programming",
+    filename='python-an-introduction-to-programming.zpaq',
 ).link(book, python)
 
 add_pdf(
-  name="Python Basics A Self Teaching Introduction",
-  filename='python-basics-a-self-teaching-introduction.zpaq',
+    name="Python Basics A Self Teaching Introduction",
+    filename='python-basics-a-self-teaching-introduction.zpaq',
 ).link(book, python)
 
 add_pdf(
-  name="Software Testing Principles And Practices",
-  filename='software-testing-principles-and-practices.zpaq',
+    name="Software Testing Principles And Practices",
+    filename='software-testing-principles-and-practices.zpaq',
 ).link(book, software_development)
 
 add_pdf(
-  name="TensorFlow 2 Pocket Primer",
-  filename='tensorflow-2-pocket-primer.zpaq',
+    name="TensorFlow 2 Pocket Primer",
+    filename='tensorflow-2-pocket-primer.zpaq',
 ).link(book, tensorflow)
 
 add_pdf(
-  name="Arduino Cookbook",
-  filename='arduino-cookbook.zpaq',
+    name="Arduino Cookbook",
+    filename='arduino-cookbook.zpaq',
 ).link(book)
 
 add_pdf(
-  name="Building Web Apps With Wordpress",
-  filename='building-web-apps-with-wordpress.zpaq',
+    name="Building Web Apps With Wordpress",
+    filename='building-web-apps-with-wordpress.zpaq',
 ).link(book, wordpress)
 
 add_pdf(
-  name="Creating Augmented Virtual Realities",
-  filename='creating-augmented-virtual-realities.zpaq',
+    name="Creating Augmented Virtual Realities",
+    filename='creating-augmented-virtual-realities.zpaq',
 ).link(book, ar, vr)
 
 add_pdf(
-  name="D3 For The Impatient",
-  filename='d3-for-the-impatient.zpaq',
+    name="D3 For The Impatient",
+    filename='d3-for-the-impatient.zpaq',
 ).link(book, d3)
 
 add_pdf(
-  name="DNS And Bind",
-  filename='dns-and-bind.zpaq',
+    name="DNS And Bind",
+    filename='dns-and-bind.zpaq',
 ).link(book, networks)
 
 add_pdf(
-  name="JavaScript The Definitive Guide",
-  filename='javascript-the-definitive-guide.zpaq',
+    name="JavaScript The Definitive Guide",
+    filename='javascript-the-definitive-guide.zpaq',
 ).link(book, javascript)
 
 add_pdf(
-  name="Maching Learning Pocket Reference",
-  filename='maching-learning-pocket-reference.zpaq',
+    name="Maching Learning Pocket Reference",
+    filename='maching-learning-pocket-reference.zpaq',
 ).link(book, machine_learning)
 
 add_pdf(
-  name="Mining The Social Web",
-  filename='mining-the-social-web.zpaq',
+    name="Mining The Social Web",
+    filename='mining-the-social-web.zpaq',
 ).link(book)
 
 add_pdf(
-  name="Programming PHP",
-  filename='programming-php.zpaq',
+    name="Programming PHP",
+    filename='programming-php.zpaq',
 ).link(book, php)
 
 add_pdf(
-  name="Programming Quantum Computing",
-  filename='programming-quantum-computing.zpaq',
+    name="Programming Quantum Computing",
+    filename='programming-quantum-computing.zpaq',
 ).link(book, quantum)
 
 add_pdf(
-  name="Raspberry Pi Cookbook",
-  filename='raspberry-pi-cookbook.zpaq',
+    name="Raspberry Pi Cookbook",
+    filename='raspberry-pi-cookbook.zpaq',
 ).link(book, raspberry_pi)
 
 add_pdf(
-  name="Revolution In The Valley",
-  filename='revolution-in-the-valley.zpaq',
+    name="Revolution In The Valley",
+    filename='revolution-in-the-valley.zpaq',
 ).link(book)
 
 add_pdf(
-  name="Unity Game Development Cookbook",
-  filename='unity-game-development-cookbook.zpaq',
+    name="Unity Game Development Cookbook",
+    filename='unity-game-development-cookbook.zpaq',
 ).link(book, unity, gamedev)
 
 add_pdf(
-  name="Adopting Elixir",
-  filename="adopting-elixir.zpaq",
+    name="Adopting Elixir",
+    filename="adopting-elixir.zpaq",
 ).link(book, elixir)
 
 add_pdf(
-  name="Build A Binary Clock With Elixir And Nerves",
-  filename="build-a-binary-clock-with-elixir-and-nerves.zpaq",
+    name="Build A Binary Clock With Elixir And Nerves",
+    filename="build-a-binary-clock-with-elixir-and-nerves.zpaq",
 ).link(book, elixir)
 
 add_pdf(
-  name="Build A Weather Station With Elixir And Nerves",
-  filename="build-a-weather-station-with-elixir-and-nerves.zpaq",
+    name="Build A Weather Station With Elixir And Nerves",
+    filename="build-a-weather-station-with-elixir-and-nerves.zpaq",
 ).link(book, nerves)
 
 add_pdf(
-  name="Concurrent Data Processing In Elixir",
-  filename="concurrent-data-processing-in-elixir.zpaq",
+    name="Concurrent Data Processing In Elixir",
+    filename="concurrent-data-processing-in-elixir.zpaq",
 ).link(book, elixir, data)
 
 add_pdf(
-  name="Craft GraphQL Apis In Elixir With Absinthe",
-  filename="craft-graphql-apis-in-elixir-with-absinthe.zpaq",
+    name="Craft GraphQL Apis In Elixir With Absinthe",
+    filename="craft-graphql-apis-in-elixir-with-absinthe.zpaq",
 ).link(book, elixir, absinthe)
 
 add_pdf(
-  name="Designing Elixir Systems With OTP",
-  filename="designing-elixir-systems-with-otp.zpaq",
+    name="Designing Elixir Systems With OTP",
+    filename="designing-elixir-systems-with-otp.zpaq",
 ).link(book, elixir)
 
 add_pdf(
-  name="Functional Web Development With Elixir OTP And Phoenix",
-  filename="functional-web-development-with-elixir-otp-and-phoenix.zpaq",
+    name="Functional Web Development With Elixir OTP And Phoenix",
+    filename="functional-web-development-with-elixir-otp-and-phoenix.zpaq",
 ).link(book, phoenix)
 
 add_pdf(
-  name="Genetic Algorithms In Elixir",
-  filename="genetic-algorithms-in-elixir.zpaq",
+    name="Genetic Algorithms In Elixir",
+    filename="genetic-algorithms-in-elixir.zpaq",
 ).link(book, ai, elixir)
 
 add_pdf(
-  name="Learn Functional Programming With Elixir",
-  filename="learn-functional-programming-with-elixir.zpaq",
+    name="Learn Functional Programming With Elixir",
+    filename="learn-functional-programming-with-elixir.zpaq",
 ).link(book, functional_programming, elixir)
 
 add_pdf(
-  name="Metaprogramming Elixir",
-  filename="metaprogramming-elixir.zpaq",
+    name="Metaprogramming Elixir",
+    filename="metaprogramming-elixir.zpaq",
 ).link(book, metaprogramming, elixir)
 
 add_pdf(
-  name="Programmer Passport Elixir",
-  filename="programmer-passport-elixir.zpaq",
+    name="Programmer Passport Elixir",
+    filename="programmer-passport-elixir.zpaq",
 ).link(book, elixir)
 
 add_pdf(
-  name="Programmer Passport OTP",
-  filename="programmer-passport-otp.zpaq",
+    name="Programmer Passport OTP",
+    filename="programmer-passport-otp.zpaq",
 ).link(book, elixir)
 
 add_pdf(
-  name="Programming Ecto",
-  filename="programming-ecto.zpaq",
+    name="Programming Ecto",
+    filename="programming-ecto.zpaq",
 ).link(book, ecto)
 
 add_pdf(
-  name="Programming Elixir 16",
-  filename="programming-elixir-16.zpaq",
+    name="Programming Elixir 16",
+    filename="programming-elixir-16.zpaq",
 ).link(book, elixir)
 
 add_pdf(
-  name="Programming Phoenix 1.4",
-  filename="programming-phoenix-1-4.zpaq",
+    name="Programming Phoenix 1.4",
+    filename="programming-phoenix-1-4.zpaq",
 ).link(book, phoenix)
 
 add_pdf(
-  name="Property Based Testing With Proper Erlang And Elixir",
-  filename="property-based-testing-with-proper-erlang-and-elixir.zpaq",
+    name="Property Based Testing With Proper Erlang And Elixir",
+    filename="property-based-testing-with-proper-erlang-and-elixir.zpaq",
 ).link(book, testing, erlang, elixir)
 
 add_pdf(
-  name="Real Time Phoenix",
-  filename="real-time-phoenix.zpaq",
+    name="Real Time Phoenix",
+    filename="real-time-phoenix.zpaq",
 ).link(book, phoenix)
 
 add_pdf(
-  name="Seven More Languages In Seven Weeks",
-  filename="seven-more-languages-in-seven-weeks.zpaq",
+    name="Seven More Languages In Seven Weeks",
+    filename="seven-more-languages-in-seven-weeks.zpaq",
 ).link(book, lua, factor, elixir, elm, julia, minikanren, idris)
 
 add_pdf(
-  name="Testing Elixir",
-  filename="testing-elixir.zpaq",
+    name="Testing Elixir",
+    filename="testing-elixir.zpaq",
 ).link(book, testing, elixir)
 
 add_pdf(
-  name="The Little Elixir And OTP Guidebook",
-  filename="the-little-elixir-and-otp-guidebook.zpaq",
+    name="The Little Elixir And OTP Guidebook",
+    filename="the-little-elixir-and-otp-guidebook.zpaq",
 ).link(book, elixir)
 
+add_url(
+    name='Mermaid',
+    url="https://mermaidjs.github.io/",
+    description='Draw diagrams in markdown',
+).link(markdown)
 
+add_url(
+    name='Programmable Web',
+    url="https://www.programmableweb.com/",
+    description='Web API directory',
+).link(webdev, rest, reference)
+
+add_url(
+    name='Purely Functional Data Structures',
+    url='http://www.cs.cmu.edu/~rwh/theses/okasaki.pdf',
+).link(free, book, functional_programming, data_structures)
+
+add_url(
+    name='Handbook of Applied Cryptography',
+    url='http://cacr.uwaterloo.ca/hac/index.html',
+).link(free, book, security)
+
+add_url(
+    name="Ramda",
+    url="https://ramdajs.com/",
+    description='A practical functional library for JavaScript',
+).link(javascript, library, functional_programming)
+
+add_url(
+    name="Sanctuary",
+    url="https://sanctuary.js.org/",
+    description='A functional library for JavaScript programmers',
+).link(javascript, library, functional_programming)
+
+add_url(
+    name="Lodash",
+    url="https://lodash.com/",
+    description='JavaScript algorithms library',
+).link(javascript, algorithms, library)
 
 
 
