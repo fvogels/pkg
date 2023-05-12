@@ -26,7 +26,8 @@ def fetch(id):
 
 @cli.command()
 @click.argument('names', nargs=-1)
-def find(names):
+@click.option('--format', type=click.Choice(['full', 'table'], case_sensitive=False), default='full')
+def find(names, format):
     graph = Graph()
     nodesets = [
         {
@@ -39,13 +40,22 @@ def find(names):
     intersection = reduce(lambda x, y: x & y, nodesets)
 
     console = Console()
-    for node in intersection:
-        table = Table(show_header=False)
-        table.add_column('Key', style='bold')
-        table.add_column('Value')
-        for key, value in node.fields():
-            table.add_row(key, str(value))
-        console.print(table)
+    match format:
+        case 'full':
+            for node in intersection:
+                table = Table(show_header=False)
+                table.add_column('Key', style='bold')
+                table.add_column('Value')
+                for key, value in node.fields():
+                    table.add_row(key, str(value))
+                console.print(table)
+        case 'table':
+            table = Table(show_header=False, show_edge=False, show_lines=False)
+            table.add_column('Name', style='bold')
+            table.add_column('Id')
+            for node in intersection:
+                table.add_row(str(node.id), node.name)
+            console.print(table)
 
 
 @cli.command()
