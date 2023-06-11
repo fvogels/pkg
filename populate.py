@@ -3484,79 +3484,79 @@ add_url(
 ).link(framework, gamedev, csharp)
 
 add_pdf(
-  name='Csharp 10 In A Nutshell',
+  name='C# 10 In A Nutshell',
   filename='csharp-10-in-a-nutshell.zpaq',
-).link(book)
+).link(book, csharp)
 
 add_pdf(
   name='Cloud Native Go',
   filename='cloud-native-go.zpaq',
-).link(book)
+).link(book, go)
 
 add_pdf(
   name='Command Line Rust',
   filename='command-line-rust.zpaq',
-).link(book)
+).link(book, rust)
 
 add_pdf(
-  name='Cplusplus Software Design',
+  name='C++ Software Design',
   filename='cplusplus-software-design.zpaq',
-).link(book)
+).link(book, cpp)
 
 add_pdf(
   name='Efficient Go',
   filename='efficient-go.zpaq',
-).link(book)
+).link(book, go)
 
 add_pdf(
   name='Fluent C',
   filename='fluent-c.zpaq',
-).link(book)
+).link(book, clang)
 
 add_pdf(
-  name='Learning Php Mysql And Javascript',
+  name='Learning Php, Mysql And Javascript',
   filename='learning-php-mysql-and-javascript.zpaq',
-).link(book)
+).link(book, php, mysql, javascript)
 
 add_pdf(
   name='Learning Typescript',
   filename='learning-typescript.zpaq',
-).link(book)
+).link(book, typescript)
 
 add_pdf(
   name='Modernizing Enterprise Java',
   filename='modernizing-enterprise-java.zpaq',
-).link(book)
+).link(book, java)
 
 add_pdf(
   name='Multithreaded Javascript',
   filename='multithreaded-javascript.zpaq',
-).link(book)
+).link(book, concurrent_programming, javascript)
 
 add_pdf(
   name='Programming Android With Kotlin',
   filename='programming-android-with-kotlin.zpaq',
-).link(book)
+).link(book, android, kotlin)
 
 add_pdf(
-  name='Programming Csharp10',
+  name='Programming C# 10',
   filename='programming-csharp10.zpaq',
-).link(book)
+).link(book, csharp)
 
 add_pdf(
   name='Robust Python',
   filename='robust-python.zpaq',
-).link(book)
+).link(book, python)
 
 add_pdf(
   name='Scala Cookbook',
   filename='scala-cookbook.zpaq',
-).link(book)
+).link(book, scala)
 
 add_pdf(
-  name='Sql In A Nutshell',
+  name='SQL In A Nutshell',
   filename='sql-in-a-nutshell.zpaq',
-).link(book)
+).link(book, sql)
 
 
 # add_old_new_thing(add_url, oldnewthing)
