@@ -84,6 +84,7 @@ ar = add_node(name='Augmented Reality')
 vr = add_node(name='Virtual Reality')
 agile = add_node(name='Agile Programming').link(software_development)
 bundler = add_node(name='Bundler')
+build_your_own = add_node(name='Build Your Own')
 
 arduino = add_url(
     name='Arduino',
@@ -3382,9 +3383,180 @@ add_url(
     description='JavaScript algorithms library',
 ).link(javascript, algorithms, library)
 
+add_url(
+    name='ugit: DIY Git in Python',
+    url='https://www.leshenko.net/p/ugit/',
+).link(build_your_own, git, python)
 
+add_url(
+    name="Reimplementing “git clone” in Haskell from the bottom up",
+    url='http://stefan.saasen.me/articles/git-clone-in-haskell-from-the-bottom-up/',
+).link(build_your_own, git, haskell)
 
+add_url(
+    name="Gitlet (JavaScript)",
+    url='https://gitlet.maryrosecook.com/docs/gitlet.html',
+).link(build_your_own, git, javascript)
 
+add_url(
+    name="Build GIT - Learn GIT (JavaScript)",
+    url='https://kushagra.dev/blog/build-git-learn-git/',
+).link(build_your_own, git, javascript)
+
+add_url(
+    name="Just enough of a Git client to create a repo, commit, and push itself to GitHub (Python)",
+    url='https://benhoyt.com/writings/pygit/',
+).link(build_your_own, git, python)
+
+add_url(
+    name="Write yourself a Git! (Python)",
+    url='https://wyag.thb.lt/',
+).link(build_your_own, git, python)
+
+add_url(
+    name="Rebuilding Git in Ruby",
+    url='https://robots.thoughtbot.com/rebuilding-git-in-ruby',
+).link(build_your_own, git, ruby)
+
+add_url(
+    name="Introduction to Ray Tracing: a Simple Method for Creating 3D Images (C++)",
+    url="(https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/how-does-it-work",
+).link(build_your_own, graphics, cpp)
+
+add_url(
+    name="How OpenGL works: software rendering in 500 lines of code (C++)",
+    url="https://github.com/ssloy/tinyrenderer/wiki",
+).link(build_your_own, graphics, cpp)
+
+add_url(
+    name="Raycasting engine of Wolfenstein 3D (C++)",
+    url="https://lodev.org/cgtutor/raycasting.html",
+).link(build_your_own, graphics, cpp)
+
+add_url(
+    name="Physically Based Rendering:From Theory To Implementation (C++)",
+    url="http://www.pbr-book.org/",
+).link(build_your_own, graphics, cpp)
+
+add_url(
+    name="Ray Tracing in One Weekend (C++)",
+    url="https://raytracing.github.io/books/RayTracingInOneWeekend.html",
+).link(build_your_own, graphics, cpp)
+
+add_url(
+    name="Rasterization: a Practical Implementation (C++)",
+    url="https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/overview-rasterization-algorithm",
+).link(build_your_own, graphics)
+
+add_url(
+    name="Learning how to write a 3D soft engine from scratch in C#, TypeScript or JavaScript",
+    url="https://www.davrous.com/2013/06/13/tutorial-series-learning-how-to-write-a-3d-soft-engine-from-scratch-in-c-typescript-or-javascript/",
+).link(build_your_own, graphics, csharp, javascript)
+
+add_url(
+    name="Build your own 3D renderer (Java, JavaScript)",
+    url="https://avik-das.github.io/build-your-own-raytracer/",
+).link(build_your_own, graphics, javascript, java)
+
+add_url(
+    name="How to create your own simple 3D render engine in pure Java",
+    url="https://blog.rogach.org/2015/08/how-to-create-your-own-simple-3d-render.html",
+).link(build_your_own, graphics, java)
+
+add_url(
+    name="Computer Graphics from scratch (JavaScript)",
+    url="https://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html",
+).link(build_your_own, graphics, javascript)
+
+add_url(
+    name="A 3D Modeller (Python)",
+    url="https://aosabook.org/en/500L/a-3d-modeller.html",
+).link(build_your_own, graphics, python)
+
+add_pdf(
+    name='Certified Programming With Dependent Types',
+    filename='certified-programming-with-dependent-types.zpaq',
+).link(coq)
+
+add_url(
+    name='MonoGame',
+    url='https://www.monogame.net/',
+).link(framework, gamedev, csharp)
+
+add_pdf(
+  name='Csharp 10 In A Nutshell',
+  filename='csharp-10-in-a-nutshell.zpaq',
+).link(book)
+
+add_pdf(
+  name='Cloud Native Go',
+  filename='cloud-native-go.zpaq',
+).link(book)
+
+add_pdf(
+  name='Command Line Rust',
+  filename='command-line-rust.zpaq',
+).link(book)
+
+add_pdf(
+  name='Cplusplus Software Design',
+  filename='cplusplus-software-design.zpaq',
+).link(book)
+
+add_pdf(
+  name='Efficient Go',
+  filename='efficient-go.zpaq',
+).link(book)
+
+add_pdf(
+  name='Fluent C',
+  filename='fluent-c.zpaq',
+).link(book)
+
+add_pdf(
+  name='Learning Php Mysql And Javascript',
+  filename='learning-php-mysql-and-javascript.zpaq',
+).link(book)
+
+add_pdf(
+  name='Learning Typescript',
+  filename='learning-typescript.zpaq',
+).link(book)
+
+add_pdf(
+  name='Modernizing Enterprise Java',
+  filename='modernizing-enterprise-java.zpaq',
+).link(book)
+
+add_pdf(
+  name='Multithreaded Javascript',
+  filename='multithreaded-javascript.zpaq',
+).link(book)
+
+add_pdf(
+  name='Programming Android With Kotlin',
+  filename='programming-android-with-kotlin.zpaq',
+).link(book)
+
+add_pdf(
+  name='Programming Csharp10',
+  filename='programming-csharp10.zpaq',
+).link(book)
+
+add_pdf(
+  name='Robust Python',
+  filename='robust-python.zpaq',
+).link(book)
+
+add_pdf(
+  name='Scala Cookbook',
+  filename='scala-cookbook.zpaq',
+).link(book)
+
+add_pdf(
+  name='Sql In A Nutshell',
+  filename='sql-in-a-nutshell.zpaq',
+).link(book)
 
 
 # add_old_new_thing(add_url, oldnewthing)
